@@ -1,0 +1,48 @@
+{
+  "skill_name": "mcp-skill-builder",
+  "iteration": 2,
+  "purpose": "Confirm per-trial DB isolation + agent-cwd hardening in run_sim.py",
+  "inner_model": "claude-haiku-4-5-20251001",
+  "trials_per_task": 2,
+  "domain": "project-tracker fixture (9 quirk-laden tools)",
+  "configs": {
+    "baseline": {
+      "config": "baseline",
+      "pass_rate": 0.875,
+      "passes": 7,
+      "total": 8,
+      "per_task": {
+        "mark-biometric-done": "1/2",
+        "find-warehouse-task": "2/2",
+        "create-data-task": "2/2",
+        "assign-mob-unassigned": "2/2"
+      },
+      "mean_wall_s": 28.1,
+      "mean_turns": 10.1,
+      "mean_cost_usd": 0.0557
+    },
+    "with_skill": {
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "passes": 8,
+      "total": 8,
+      "per_task": {
+        "mark-biometric-done": "2/2",
+        "find-warehouse-task": "2/2",
+        "create-data-task": "2/2",
+        "assign-mob-unassigned": "2/2"
+      },
+      "mean_wall_s": 17.2,
+      "mean_turns": 6.8,
+      "mean_cost_usd": 0.0455
+    }
+  },
+  "delta_pass_rate": 0.125,
+  "invariants": {
+    "production_db_unchanged": true,
+    "per_trial_dbs": 16,
+    "agent_cwd_isolated": true,
+    "mcp_tool_calls": 86,
+    "filesystem_bypass_attempts_blocked": 8
+  }
+}

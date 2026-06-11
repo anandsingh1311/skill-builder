@@ -1,0 +1,22 @@
+{
+  "task": "mark-biometric-done",
+  "trial": 1,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "biometric task is done",
+      "passed": true,
+      "evidence": "sql returned [['done']]"
+    },
+    {
+      "text": "task was assigned first (ERR_409 quirk)",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    },
+    {
+      "text": "assigned to an active user",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    }
+  ]
+}

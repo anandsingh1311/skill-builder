@@ -1,0 +1,17 @@
+{
+  "task": "find-warehouse-task",
+  "trial": 1,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "the ETL/warehouse task (id 5) is in_progress",
+      "passed": true,
+      "evidence": "sql returned [['in_progress']]"
+    },
+    {
+      "text": "no wrong task got moved to in_progress",
+      "passed": true,
+      "evidence": "sql returned [[0]]"
+    }
+  ]
+}

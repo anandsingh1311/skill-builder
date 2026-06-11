@@ -1,0 +1,62 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 11.9,
+  "num_turns": 4,
+  "duration_ms": 10718,
+  "total_cost_usd": 0.0367493,
+  "usage": {
+    "input_tokens": 36,
+    "cache_creation_input_tokens": 10795,
+    "cache_read_input_tokens": 108103,
+    "output_tokens": 754,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10795,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 126,
+        "cache_read_input_tokens": 29924,
+        "cache_creation_input_tokens": 237,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 237
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__list_projects,mcp__tracker__create_task"
+      }
+    },
+    {
+      "name": "mcp__tracker__list_projects",
+      "input": {}
+    },
+    {
+      "name": "mcp__tracker__create_task",
+      "input": {
+        "project_key": "DATA",
+        "title": "Patch CVE-2026-1234",
+        "priority": "high"
+      }
+    }
+  ],
+  "final_text": "Done. Created task **#15** \"Patch CVE-2026-1234\" in the Data Platform project with high priority. It's in `todo` status and unassigned.",
+  "stderr_tail": ""
+}

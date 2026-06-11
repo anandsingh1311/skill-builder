@@ -1,0 +1,107 @@
+{
+  "label": "with_skill",
+  "model": "claude-haiku-4-5-20251001",
+  "trials": 2,
+  "isolation": "per-trial",
+  "tasks": [
+    {
+      "id": "mark-biometric-done",
+      "passes": 2,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 6,
+          "wall_seconds": 14.2,
+          "cost_usd": 0.0423389,
+          "tool_calls": 5,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "num_turns": 6,
+          "wall_seconds": 13.9,
+          "cost_usd": 0.0420846,
+          "tool_calls": 5,
+          "failed_assertions": []
+        }
+      ]
+    },
+    {
+      "id": "find-warehouse-task",
+      "passes": 2,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 10,
+          "wall_seconds": 30.6,
+          "cost_usd": 0.06252250000000001,
+          "tool_calls": 9,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "num_turns": 8,
+          "wall_seconds": 21.3,
+          "cost_usd": 0.0524786,
+          "tool_calls": 7,
+          "failed_assertions": []
+        }
+      ]
+    },
+    {
+      "id": "create-data-task",
+      "passes": 2,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 4,
+          "wall_seconds": 11.2,
+          "cost_usd": 0.0356818,
+          "tool_calls": 3,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "num_turns": 4,
+          "wall_seconds": 12.4,
+          "cost_usd": 0.037189400000000004,
+          "tool_calls": 3,
+          "failed_assertions": []
+        }
+      ]
+    },
+    {
+      "id": "assign-mob-unassigned",
+      "passes": 2,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 8,
+          "wall_seconds": 16.8,
+          "cost_usd": 0.046414000000000004,
+          "tool_calls": 7,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "num_turns": 8,
+          "wall_seconds": 17.0,
+          "cost_usd": 0.04494240000000001,
+          "tool_calls": 7,
+          "failed_assertions": []
+        }
+      ]
+    }
+  ],
+  "pass_rate": 1.0,
+  "mean_wall_seconds": 17.2,
+  "mean_cost_usd": 0.0455
+}

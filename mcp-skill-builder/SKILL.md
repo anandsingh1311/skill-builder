@@ -11,7 +11,7 @@ Tool names and JSON schemas tell an agent *what it can call*, but not *how to ge
 The problem is iteration: you can't repeatedly test a draft skill against a production MCP server (slow, costly, and write operations are dangerous). So this pipeline builds a **database-backed mock** of the server first. The mock gives you:
 
 - **Safety** — agents can create/update/delete freely; it's a throwaway SQLite file.
-- **Determinism** — reset the database to a known seed before every trial.
+- **Determinism** — every trial gets its own freshly-seeded database, so runs never contaminate each other.
 - **Objective grading** — a task is "done" if the final database state matches expectations. No LLM judge needed.
 
 Then you run **Haiku agents** against the mock, with and without the draft skill, and iterate on the skill until the small model succeeds reliably. Haiku is the stress test: if a small model can drive the server correctly with your skill, the skill genuinely carries the knowledge rather than relying on model intelligence.
@@ -83,7 +83,7 @@ Fix mismatches until the diff is clean. Then write `mock-config.json`:
 
 ## Step 4: Draft the target skill
 
-Read `references/target-skill-guide.md`, then write the skill you're actually here to produce. The essence: a tool-selection map, canonical multi-tool workflows with verbatim example calls, the gotchas (what each cryptic error really means and how to recover), and efficiency rules — written explicitly enough for a small model. The generated skill must never mention the mock; it documents the real server.
+Read `references/target-skill-guide.md`, then write the skill you're actually here to produce. The essence: a tool-selection map, canonical multi-tool workflows with verbatim example calls, the gotchas (what each cryptic error really means and how to recover), and efficiency rules — written explicitly enough for a small model. The guide also covers when the skill should bundle `scripts/` (payload builders, output transforms — work around the tool calls, since scripts can't make them) and when a large server warrants splitting into `references/`. The generated skill must never mention the mock; it documents the real server.
 
 ## Step 5: Write simulation tasks
 
@@ -93,8 +93,8 @@ Read `references/simulation-guide.md` for task-design guidance, then write `task
 {
   "server_name": "tracker",
   "mcp_config": "mock-config.json",
-  "db": "tracker.db",
-  "reset": "/abs/path/to/python seed_db.py",
+  "db_env": "MOCK_DB",
+  "seed": "/abs/path/to/python seed_db.py",
   "tasks": [
     {
       "id": "close-login-bug",
@@ -108,24 +108,26 @@ Read `references/simulation-guide.md` for task-design guidance, then write `task
 }
 ```
 
-Aim for 4–8 tasks covering every workflow the skill claims to teach. Paths are relative to `tasks.json`; `reset` runs before each trial.
+Aim for 4–8 tasks covering every workflow the skill claims to teach. Paths are relative to `tasks.json`. Each trial gets its **own** database: before the trial, the simulator runs `seed` with `$MOCK_DB` (the name in `db_env`) set to a unique per-trial path, then points the mock at that same file. So `seed_db.py` must honor `$MOCK_DB` (see `references/mock-server-guide.md`), and trials can never pollute one another.
 
 ## Step 6: Simulate
 
-Run Haiku against the mock, without the skill (baseline) and with it. Trials share one database, so run the two configs sequentially, not in parallel:
+Run Haiku against the mock, without the skill (baseline) and with it. Each trial is fully isolated (its own DB), so the two configs don't have to be serialized — but running them one after the other keeps the output readable:
 
 ```bash
 $PY <skill-dir>/scripts/run_sim.py tasks.json --trials 3 --out runs/baseline
 $PY <skill-dir>/scripts/run_sim.py tasks.json --trials 3 --skill <path-to-drafted-skill-dir> --out runs/with_skill
 ```
 
-The script resets the DB, runs `claude -p --model haiku` with the mock MCP config (injecting the skill via system prompt when `--skill` is given), grades the final DB state against the assertions, and writes per-trial transcripts plus a `summary.json` with pass rates, turns, and cost. Expect a few minutes per config.
+For each trial the script seeds a fresh DB at `runs/<config>/<task>/trial-N/db.sqlite`, writes a per-trial mock config pointing the mock at it, runs `claude -p --model haiku` (injecting the skill via system prompt when `--skill` is given), grades that DB against the assertions, and writes per-trial transcripts plus a `summary.json` with pass rates, turns, and cost. Expect a few minutes per config.
 
 ## Step 7: Iterate
 
-For every failed trial, read the transcript (`transcript.jsonl` — the `tool_calls` list in `result.json` is the quick view) and classify the failure: wrong tool chosen, bad argument (id vs name, enum typo), missing prerequisite step, gave up after an error, or falsely claimed success. Fix the *skill*, not the task — unless the task itself is ambiguous. Then re-run Step 6.
+Before editing the skill, snapshot it (`cp -r <target-skill-dir> <workspace>/skill-iter<N>/`) — when the next run's numbers move, you want to know which edit moved them, and you can't diff against a version you overwrote.
 
-You're done when with-skill Haiku passes essentially all tasks and clearly beats baseline. If baseline already passes everything, your tasks are too easy or the server is too simple to need a skill — say so honestly rather than shipping a skill that adds nothing.
+For every failed trial, read the transcript (`transcript.jsonl` — the `tool_calls` list in `result.json` is the quick view) and classify the failure using the taxonomy in `references/simulation-guide.md`: wrong tool chosen, bad argument (id vs name, enum typo), missing prerequisite step, gave up after an error, falsely claimed success, or the same computation reinvented across trials (bundle it as a script). Skim a couple of *passing* with-skill transcripts too — assertions can't see a skill that succeeds wastefully. Fix the *skill*, not the task — unless the task itself is ambiguous. Then re-run Step 6.
+
+You're done when with-skill Haiku passes essentially all tasks and clearly beats baseline. Confirm with the held-out tasks (run once, only now — see the simulation guide): if they pass like the iterated ones, the skill generalizes. If baseline already passes everything, your tasks are too easy or the server is too simple to need a skill — say so honestly rather than shipping a skill that adds nothing.
 
 ## Step 8: Ship
 

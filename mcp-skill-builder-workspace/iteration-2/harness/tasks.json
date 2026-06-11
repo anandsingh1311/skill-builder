@@ -1,0 +1,42 @@
+{
+  "server_name": "tracker",
+  "mcp_config": "mock-config.json",
+  "db_env": "MOCK_DB",
+  "seed": "/Users/anandkumarsingh/skill-builder/.venv/bin/python /Users/anandkumarsingh/skill-builder/mcp-skill-builder-workspace/iteration-2/harness/seed_db.py",
+  "tasks": [
+    {
+      "id": "mark-biometric-done",
+      "prompt": "In the project tracker, mark the 'Add biometric unlock' task as done.",
+      "assertions": [
+        {"name": "biometric task is done", "sql": "SELECT status FROM tasks WHERE id=2", "expect_rows": [["done"]]},
+        {"name": "task was assigned first (ERR_409 quirk)", "sql": "SELECT assignee_id FROM tasks WHERE id=2", "expect_gte": 1},
+        {"name": "assigned to an active user", "sql": "SELECT u.active FROM tasks t JOIN users u ON u.id=t.assignee_id WHERE t.id=2", "expect_rows": [[1]]}
+      ]
+    },
+    {
+      "id": "find-warehouse-task",
+      "prompt": "Find the task about the warehouse sync that keeps timing out and set its status to in_progress.",
+      "assertions": [
+        {"name": "the ETL/warehouse task (id 5) is in_progress", "sql": "SELECT status FROM tasks WHERE id=5", "expect_rows": [["in_progress"]]},
+        {"name": "no wrong task got moved to in_progress", "sql": "SELECT COUNT(*) FROM tasks WHERE status='in_progress' AND id NOT IN (1,5,7,9)", "expect_scalar": 0}
+      ]
+    },
+    {
+      "id": "create-data-task",
+      "prompt": "Create a new high-priority task titled 'Patch CVE-2026-1234' in the Data Platform project.",
+      "assertions": [
+        {"name": "task created in Data Platform (project 2) with high priority", "sql": "SELECT priority FROM tasks WHERE title='Patch CVE-2026-1234' AND project_id=2", "expect_rows": [["high"]]},
+        {"name": "exactly one such task (no duplicate/retry mess)", "sql": "SELECT COUNT(*) FROM tasks WHERE title='Patch CVE-2026-1234'", "expect_scalar": 1}
+      ]
+    },
+    {
+      "id": "assign-mob-unassigned",
+      "prompt": "Assign every unassigned task in the Mobile App project to Priya Raman.",
+      "assertions": [
+        {"name": "the three unassigned MOB tasks now belong to Priya (user 1)", "sql": "SELECT id FROM tasks WHERE project_id=1 AND assignee_id=1 ORDER BY id", "expect_rows": [[2],[4],[13]]},
+        {"name": "no MOB task left unassigned", "sql": "SELECT COUNT(*) FROM tasks WHERE project_id=1 AND assignee_id IS NULL", "expect_scalar": 0},
+        {"name": "did not disturb already-assigned MOB tasks", "sql": "SELECT id FROM tasks WHERE project_id=1 AND assignee_id=2 ORDER BY id", "expect_rows": [[1],[3]]}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "tracker": {
+      "command": "/Users/anandkumarsingh/skill-builder/.venv/bin/python",
+      "args": [
+        "/Users/anandkumarsingh/skill-builder/mcp-skill-builder-workspace/iteration-2/harness/mock_server.py"
+      ],
+      "env": {
+        "MOCK_DB": "/Users/anandkumarsingh/skill-builder/mcp-skill-builder-workspace/iteration-2/runs/baseline/find-warehouse-task/trial-1/db.sqlite"
+      }
+    }
+  }
+}

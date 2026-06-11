@@ -1,0 +1,85 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 21.3,
+  "num_turns": 8,
+  "duration_ms": 20137,
+  "total_cost_usd": 0.0524786,
+  "usage": {
+    "input_tokens": 68,
+    "cache_creation_input_tokens": 11708,
+    "cache_read_input_tokens": 229136,
+    "output_tokens": 1111,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 11708,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 93,
+        "cache_read_input_tokens": 30705,
+        "cache_creation_input_tokens": 369,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 369
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks,mcp__tracker__update_task_status"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse sync"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "timeout"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "sync"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {}
+    },
+    {
+      "name": "mcp__tracker__update_task_status",
+      "input": {
+        "task_id": 5,
+        "status": "in_progress"
+      }
+    }
+  ],
+  "final_text": "Done. Task 5 \"Nightly ETL job timing out\" is now set to `in_progress`. It's assigned to user 2 and was previously in `blocked` status.",
+  "stderr_tail": ""
+}

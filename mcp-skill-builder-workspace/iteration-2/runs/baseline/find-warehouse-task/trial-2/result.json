@@ -1,0 +1,95 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 22.9,
+  "num_turns": 9,
+  "duration_ms": 21666,
+  "total_cost_usd": 0.05422800000000001,
+  "usage": {
+    "input_tokens": 78,
+    "cache_creation_input_tokens": 10990,
+    "cache_read_input_tokens": 248640,
+    "output_tokens": 1356,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10990,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 113,
+        "cache_read_input_tokens": 30050,
+        "cache_creation_input_tokens": 301,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 301
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks,mcp__tracker__update_task_status"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse sync timing out"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "timeout"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": ""
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "",
+        "cursor": 5
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "",
+        "cursor": 10
+      }
+    },
+    {
+      "name": "mcp__tracker__update_task_status",
+      "input": {
+        "task_id": 5,
+        "status": "in_progress"
+      }
+    }
+  ],
+  "final_text": "Done! I've updated task 5 \"Nightly ETL job timing out\" to **in_progress**. This was the warehouse-related task that was timing out.",
+  "stderr_tail": ""
+}

@@ -1,0 +1,218 @@
+[
+  {
+    "name": "list_projects",
+    "description": "List all projects with their id, key, and name.",
+    "inputSchema": {
+      "properties": {},
+      "title": "list_projectsArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "list_users",
+    "description": "List all users with their id, name, email, and active flag.",
+    "inputSchema": {
+      "properties": {},
+      "title": "list_usersArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_task",
+    "description": "Get full details of a task, including its comments.",
+    "inputSchema": {
+      "properties": {
+        "task_id": {
+          "title": "Task Id",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "task_id"
+      ],
+      "title": "get_taskArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "search_tasks",
+    "description": "Search tasks. Returns up to 5 results per page and a next_cursor when more are available.",
+    "inputSchema": {
+      "properties": {
+        "query_text": {
+          "default": "",
+          "title": "Query Text",
+          "type": "string"
+        },
+        "project_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Project Id"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Status"
+        },
+        "assignee_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assignee Id"
+        },
+        "cursor": {
+          "default": 0,
+          "title": "Cursor",
+          "type": "integer"
+        }
+      },
+      "title": "search_tasksArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "create_task",
+    "description": "Create a task in a project. Priority: low, medium, high, or urgent.",
+    "inputSchema": {
+      "properties": {
+        "project_key": {
+          "title": "Project Key",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "priority": {
+          "default": "medium",
+          "title": "Priority",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_key",
+        "title"
+      ],
+      "title": "create_taskArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "update_task_status",
+    "description": "Update a task's status. Status: todo, in_progress, blocked, or done.",
+    "inputSchema": {
+      "properties": {
+        "task_id": {
+          "title": "Task Id",
+          "type": "integer"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "task_id",
+        "status"
+      ],
+      "title": "update_task_statusArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "assign_task",
+    "description": "Assign a task to a user by user id.",
+    "inputSchema": {
+      "properties": {
+        "task_id": {
+          "title": "Task Id",
+          "type": "integer"
+        },
+        "user_id": {
+          "title": "User Id",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "task_id",
+        "user_id"
+      ],
+      "title": "assign_taskArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "add_comment",
+    "description": "Add a comment to a task.",
+    "inputSchema": {
+      "properties": {
+        "task_id": {
+          "title": "Task Id",
+          "type": "integer"
+        },
+        "body": {
+          "title": "Body",
+          "type": "string"
+        },
+        "author_id": {
+          "title": "Author Id",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "task_id",
+        "body",
+        "author_id"
+      ],
+      "title": "add_commentArguments",
+      "type": "object"
+    }
+  },
+  {
+    "name": "create_project",
+    "description": "Create a project. Key must be 2-5 uppercase letters and unique.",
+    "inputSchema": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "key"
+      ],
+      "title": "create_projectArguments",
+      "type": "object"
+    }
+  }
+]

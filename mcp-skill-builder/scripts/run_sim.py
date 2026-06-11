@@ -1,14 +1,33 @@
 #!/usr/bin/env python3
 """Simulate small-model agents against a mock MCP server and grade by database state.
 
+Every trial runs against its OWN throwaway database. Before each trial the seed
+command builds a fresh SQLite file at a unique per-trial path, and that path is
+handed to the mock server through an environment variable (default MOCK_DB,
+injected into the MCP config's `env` block). Nothing is shared between trials, so
+the two configs (baseline / with_skill) can even run concurrently if you want.
+
 For each task in tasks.json, for each trial:
-  1. run the `reset` command (re-seeds the mock's SQLite DB to a known state)
-  2. run `claude -p <prompt>` headlessly with the mock MCP config
+  1. seed a fresh DB at <trial-dir>/db.sqlite (seed cmd reads $MOCK_DB for the path)
+  2. write a per-trial mock-config.json that points the mock at that DB
+  3. run `claude -p <prompt>` headlessly with that config
      (if --skill is given, the skill's SKILL.md body is injected via --append-system-prompt)
-  3. grade the final DB state (and final answer text) against the task's assertions
-  4. write transcript.jsonl, result.json, grading.json into the trial directory
+  4. grade the final DB state (and final answer text) against the task's assertions
+  5. write transcript.jsonl, result.json, grading.json into the trial directory
 
 Writes <out>/summary.json and prints a pass-rate table at the end.
+
+tasks.json schema (per-trial isolation):
+  {
+    "server_name": "tracker",
+    "mcp_config": "mock-config.json",   base config; per-trial copies add the env var
+    "db_env": "MOCK_DB",                 env var the mock + seed read for the DB path (default MOCK_DB)
+    "seed": "/abs/path/to/python seed_db.py",   builds a fresh DB at $MOCK_DB
+    "tasks": [ ... ]
+  }
+
+Legacy schema (shared DB, re-seeded in place) is still honored if a task file has
+"db" + "reset" and no "db_env"/"seed" — but the per-trial form above is preferred.
 
 Assertion forms (each entry needs a "name"):
   {"sql": "...", "expect_rows": [[...], ...]}   exact result rows
@@ -24,6 +43,7 @@ Usage:
 """
 import argparse
 import json
+import os
 import re
 import sqlite3
 import statistics
@@ -53,8 +73,38 @@ def load_skill_prompt(skill_dir: Path) -> str:
     )
 
 
+def seed_trial_db(seed_cmd: str, db_env: str, trial_db: Path, cwd: Path):
+    """Build a fresh database at trial_db by running the seed command with $db_env set."""
+    trial_db.parent.mkdir(parents=True, exist_ok=True)
+    if trial_db.exists():
+        trial_db.unlink()
+    env = {**os.environ, db_env: str(trial_db)}
+    rs = subprocess.run(seed_cmd, shell=True, cwd=cwd, capture_output=True, text=True, env=env)
+    if rs.returncode != 0:
+        print(f"FATAL: seed command failed: {rs.stderr[-500:]}", file=sys.stderr)
+        sys.exit(1)
+    if not trial_db.exists():
+        print(f"FATAL: seed command did not create {trial_db}. "
+              f"Make sure seed_db.py writes to the path in ${db_env}.", file=sys.stderr)
+        sys.exit(1)
+
+
+def write_trial_config(base_config_text: str, server_name: str, db_env: str,
+                       trial_db: Path, dest: Path) -> Path:
+    """Copy the base MCP config and inject the trial DB path into the server's env block."""
+    cfg = json.loads(base_config_text)
+    servers = cfg.get("mcpServers", {})
+    if server_name not in servers:
+        print(f"FATAL: server '{server_name}' not found in mcp_config "
+              f"(have: {list(servers)})", file=sys.stderr)
+        sys.exit(1)
+    servers[server_name].setdefault("env", {})[db_env] = str(trial_db)
+    dest.write_text(json.dumps(cfg, indent=2))
+    return dest
+
+
 def run_claude(prompt: str, server_name: str, mcp_config: Path, model: str,
-               max_turns: int, timeout: int, system_extra: str | None):
+               max_turns: int, timeout: int, system_extra: str | None, cwd: Path):
     allowed = f"mcp__{server_name},mcp__{server_name}__*,Read,Glob,Grep"
     cmd = ["claude", "-p", prompt,
            "--model", model,
@@ -69,7 +119,11 @@ def run_claude(prompt: str, server_name: str, mcp_config: Path, model: str,
     started = time.time()
     timed_out = False
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+        # cwd is an empty per-trial sandbox: the agent reaches the server only
+        # through MCP (and the skill via the absolute path in system_extra), the
+        # way a production agent would — it can't read the mock's source and try
+        # to shortcut around the tools.
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, cwd=cwd)
         stdout, stderr, returncode = proc.stdout, proc.stderr, proc.returncode
     except subprocess.TimeoutExpired as exc:
         stdout = (exc.stdout or b"").decode() if isinstance(exc.stdout, bytes) else (exc.stdout or "")
@@ -160,37 +214,64 @@ def main():
     tasks_path = Path(args.tasks_file).resolve()
     base = tasks_path.parent
     cfg = json.loads(tasks_path.read_text())
-    db_path = (base / cfg["db"]).resolve()
     mcp_config = (base / cfg["mcp_config"]).resolve()
     server_name = cfg["server_name"]
-    reset_cmd = cfg.get("reset")
 
+    # Per-trial isolation (preferred) vs legacy shared-DB-with-reset.
+    db_env = cfg.get("db_env", "MOCK_DB")
+    seed_cmd = cfg.get("seed")
+    legacy = seed_cmd is None and "db" in cfg
+    if legacy:
+        legacy_db = (base / cfg["db"]).resolve()
+        reset_cmd = cfg.get("reset")
+        print("NOTE: tasks.json uses the legacy shared-DB schema (db + reset). "
+              "Per-trial isolation (db_env + seed) is preferred; see SKILL.md.", file=sys.stderr)
+    elif seed_cmd is None:
+        print("FATAL: tasks.json needs either 'seed' (per-trial isolation) or "
+              "'db'+'reset' (legacy).", file=sys.stderr)
+        sys.exit(1)
+
+    base_config_text = mcp_config.read_text()
     system_extra = load_skill_prompt(Path(args.skill).resolve()) if args.skill else None
     selected = cfg["tasks"]
     if args.tasks:
         wanted = set(args.tasks.split(","))
         selected = [t for t in selected if t["id"] in wanted]
 
-    out_root = Path(args.out)
+    out_root = Path(args.out).resolve()   # absolute: per-trial config/db paths must not depend on cwd
     label = "with_skill" if args.skill else "baseline"
-    summary = {"label": label, "model": args.model, "trials": args.trials, "tasks": []}
+    summary = {"label": label, "model": args.model, "trials": args.trials,
+               "isolation": "shared" if legacy else "per-trial", "tasks": []}
 
     for task in selected:
-        task_stats = {"id": task["id"], "passes": 0, "trials": [], }
+        task_stats = {"id": task["id"], "passes": 0, "trials": []}
         for trial_n in range(1, args.trials + 1):
             trial_dir = out_root / task["id"] / f"trial-{trial_n}"
             trial_dir.mkdir(parents=True, exist_ok=True)
 
-            if reset_cmd:
-                rs = subprocess.run(reset_cmd, shell=True, cwd=base, capture_output=True, text=True)
-                if rs.returncode != 0:
-                    print(f"FATAL: reset command failed: {rs.stderr[-500:]}", file=sys.stderr)
-                    sys.exit(1)
+            if legacy:
+                trial_db = legacy_db
+                trial_config = mcp_config
+                if reset_cmd:
+                    rs = subprocess.run(reset_cmd, shell=True, cwd=base, capture_output=True, text=True)
+                    if rs.returncode != 0:
+                        print(f"FATAL: reset command failed: {rs.stderr[-500:]}", file=sys.stderr)
+                        sys.exit(1)
+            else:
+                trial_db = (trial_dir / "db.sqlite").resolve()
+                seed_trial_db(seed_cmd, db_env, trial_db, base)
+                trial_config = write_trial_config(
+                    base_config_text, server_name, db_env, trial_db,
+                    trial_dir / "mock-config.json")
+
+            agent_cwd = trial_dir / "agent_cwd"
+            agent_cwd.mkdir(exist_ok=True)
 
             print(f"[{label}] {task['id']} trial {trial_n}/{args.trials} ...", flush=True)
-            result, events = run_claude(task["prompt"], server_name, mcp_config, args.model,
-                                        task.get("max_turns", args.max_turns), args.timeout, system_extra)
-            expectations = grade(db_path, task, result["final_text"])
+            result, events = run_claude(task["prompt"], server_name, trial_config, args.model,
+                                        task.get("max_turns", args.max_turns), args.timeout,
+                                        system_extra, agent_cwd)
+            expectations = grade(trial_db, task, result["final_text"])
             passed = bool(expectations) and all(e["passed"] for e in expectations)
 
             (trial_dir / "transcript.jsonl").write_text("\n".join(json.dumps(e) for e in events) + "\n")

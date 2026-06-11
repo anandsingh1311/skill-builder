@@ -17,7 +17,7 @@ Structure that works (adapt as needed):
     └── Efficiency rules
 ```
 
-Keep it in one SKILL.md unless it genuinely exceeds ~300 lines; small models benefit from having everything in context.
+Keep it in one SKILL.md unless it genuinely exceeds ~300 lines; small models benefit from having everything in context. The exception is large servers (roughly 30+ tools): one file would bury the workflow the agent actually needs under twenty it doesn't. Split by domain area — SKILL.md keeps the frontmatter, the tool selection map, and a router ("issue/PR work → read `references/issues.md`; CI and workflows → `references/actions.md`"), and each reference file carries that area's workflows and error decoder. The agent then loads only the slice it needs.
 
 **Tool selection map** — for each intent, the right starting tool:
 
@@ -47,6 +47,18 @@ Keep it in one SKILL.md unless it genuinely exceeds ~300 lines; small models ben
 
 **Efficiency rules** — what burns turns: use filters instead of paginating everything, batch reads before writes, don't re-fetch what you already have. Small models loop; tell them when to stop (e.g. "if the same error occurs twice, re-read the error decoder rather than retrying a third time").
 
+## When to bundle scripts
+
+Default to **no scripts** — a simple CRUD surface needs a selection map and workflows, nothing more. But first understand the constraint that shapes everything: **bundled scripts cannot call MCP tools.** Scripts run through Bash; the tools belong to the agent. So a script never replaces a tool call — it handles the deterministic work *around* the calls, which is exactly where small models lose trials:
+
+- **Payload construction/validation** — a tool takes deep nested JSON (a query DSL, a config blob). Small models make structural mistakes under pressure; a script that emits or validates the exact payload turns a flaky retry loop into a copy-paste.
+- **Transforms over tool output** — the workflow needs aggregation, dedup, or reconciliation no server tool provides. The agent saves responses to a file; the script computes ("which ids are in export A but not B").
+- **Encoding chores** — base64 for uploads, CSV→JSON for bulk imports, hashes, timezone/ISO-date math. Classic small-model fumbles, trivially deterministic in a script.
+- **Bulk-call prep** — for "do X to 200 items", the agent still makes every call, but a script can generate the validated argument list so each call is mechanical.
+- **A sibling API, only with the user's explicit OK** — if the server fronts a REST API or CLI, a script can do in one request what would take 200 tool calls. This bypasses MCP, so it goes in the skill only when the user authorizes it and the skill says plainly that it does.
+
+How you *know* a script is warranted: the simulation transcripts tell you. If Haiku rebuilds the same computation across several trials — or keeps fumbling the same transform — that repeated work is a script waiting to be written. Write it once, put it in the skill's `scripts/`, and reference it from the workflow that needs it (see failure class 7 in `simulation-guide.md`).
+
 ## Where the content comes from
 
 Everything you learned building the mock: the schemas (`tools.json`), the quirks you reproduced (id-vs-key inconsistencies, enum values, error strings, pagination), and — most importantly — the simulation failures. Every failed baseline transcript is a section of this skill waiting to be written: if Haiku passed a user name where an id was required, that's a row in the selection map; if it gave up on `ERR_409`, that's a row in the error decoder.
@@ -61,3 +73,5 @@ Everything you learned building the mock: the schemas (`tools.json`), the quirks
 ## Style
 
 Imperative, concrete, short. Prefer a table or numbered sequence over prose. Use real example values from the server's domain, not `foo`/`bar` — small models copy examples literally, so make the examples correct to copy.
+
+Attach the one-line *why* to each rule: "check `assignee_id` first — unassigned tasks cannot be moved to done (the server rejects it with ERR_409)" beats a bare "always check the assignee". A rule with its reason lets the model generalize when reality deviates from the script (a new error variant, a slightly different workflow); a bare imperative only covers the exact case you wrote. Keep the reason to a clause — this is a why, not an essay.

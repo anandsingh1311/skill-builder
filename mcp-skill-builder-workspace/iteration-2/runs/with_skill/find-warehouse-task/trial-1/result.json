@@ -1,0 +1,97 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 30.6,
+  "num_turns": 10,
+  "duration_ms": 29426,
+  "total_cost_usd": 0.06252250000000001,
+  "usage": {
+    "input_tokens": 88,
+    "cache_creation_input_tokens": 12600,
+    "cache_read_input_tokens": 293035,
+    "output_tokens": 1481,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 12600,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 107,
+        "cache_read_input_tokens": 31676,
+        "cache_creation_input_tokens": 290,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 290
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks,mcp__tracker__update_task_status,mcp__tracker__get_task"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse sync"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "timeout"
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__list_projects"
+      }
+    },
+    {
+      "name": "mcp__tracker__list_projects",
+      "input": {}
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "project_id": 2
+      }
+    },
+    {
+      "name": "mcp__tracker__get_task",
+      "input": {
+        "task_id": 5
+      }
+    },
+    {
+      "name": "mcp__tracker__update_task_status",
+      "input": {
+        "task_id": 5,
+        "status": "in_progress"
+      }
+    }
+  ],
+  "final_text": "Done! I found task 5 \"Nightly ETL job timing out\" \u2014 which describes the 02:00 UTC warehouse sync that exceeds its 2-hour window \u2014 and updated its status from `blocked` to `in_progress`. The task is assigned to user ID 2.",
+  "stderr_tail": ""
+}

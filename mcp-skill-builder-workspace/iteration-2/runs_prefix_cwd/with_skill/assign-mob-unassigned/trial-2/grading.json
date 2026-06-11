@@ -1,0 +1,22 @@
+{
+  "task": "assign-mob-unassigned",
+  "trial": 2,
+  "passed": false,
+  "expectations": [
+    {
+      "text": "the three unassigned MOB tasks now belong to Priya (user 1)",
+      "passed": false,
+      "evidence": "sql returned []"
+    },
+    {
+      "text": "no MOB task left unassigned",
+      "passed": false,
+      "evidence": "sql returned [[3]]"
+    },
+    {
+      "text": "did not disturb already-assigned MOB tasks",
+      "passed": true,
+      "evidence": "sql returned [[1], [3]]"
+    }
+  ]
+}

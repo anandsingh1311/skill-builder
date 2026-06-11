@@ -1,0 +1,110 @@
+{
+  "label": "with_skill",
+  "model": "claude-haiku-4-5-20251001",
+  "trials": 2,
+  "isolation": "per-trial",
+  "tasks": [
+    {
+      "id": "mark-biometric-done",
+      "passes": 2,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 6,
+          "wall_seconds": 15.7,
+          "cost_usd": 0.0796323,
+          "tool_calls": 5,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "num_turns": 6,
+          "wall_seconds": 13.7,
+          "cost_usd": 0.0230765,
+          "tool_calls": 5,
+          "failed_assertions": []
+        }
+      ]
+    },
+    {
+      "id": "find-warehouse-task",
+      "passes": 2,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 12,
+          "wall_seconds": 31.4,
+          "cost_usd": 0.07085040000000001,
+          "tool_calls": 11,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "num_turns": 11,
+          "wall_seconds": 31.4,
+          "cost_usd": 0.0467136,
+          "tool_calls": 10,
+          "failed_assertions": []
+        }
+      ]
+    },
+    {
+      "id": "create-data-task",
+      "passes": 2,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 4,
+          "wall_seconds": 11.9,
+          "cost_usd": 0.0367493,
+          "tool_calls": 3,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": true,
+          "num_turns": 4,
+          "wall_seconds": 12.1,
+          "cost_usd": 0.0172756,
+          "tool_calls": 3,
+          "failed_assertions": []
+        }
+      ]
+    },
+    {
+      "id": "assign-mob-unassigned",
+      "passes": 1,
+      "trials": [
+        {
+          "trial": 1,
+          "passed": true,
+          "num_turns": 8,
+          "wall_seconds": 19.0,
+          "cost_usd": 0.0457084,
+          "tool_calls": 7,
+          "failed_assertions": []
+        },
+        {
+          "trial": 2,
+          "passed": false,
+          "num_turns": 13,
+          "wall_seconds": 68.5,
+          "cost_usd": 0.0843125,
+          "tool_calls": 12,
+          "failed_assertions": [
+            "the three unassigned MOB tasks now belong to Priya (user 1)",
+            "no MOB task left unassigned"
+          ]
+        }
+      ]
+    }
+  ],
+  "pass_rate": 0.875,
+  "mean_wall_seconds": 25.5,
+  "mean_cost_usd": 0.0505
+}
