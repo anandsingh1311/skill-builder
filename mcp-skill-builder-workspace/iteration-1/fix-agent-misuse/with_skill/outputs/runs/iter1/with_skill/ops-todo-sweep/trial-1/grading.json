@@ -1,0 +1,22 @@
+{
+  "task": "ops-todo-sweep",
+  "trial": 1,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "no todo tasks remain in Internal Ops",
+      "passed": true,
+      "evidence": "sql returned [[0]]"
+    },
+    {
+      "text": "all seven swept tasks are in_progress",
+      "passed": true,
+      "evidence": "sql returned [[7]]"
+    },
+    {
+      "text": "other projects untouched",
+      "passed": true,
+      "evidence": "sql returned [[4]]"
+    }
+  ]
+}

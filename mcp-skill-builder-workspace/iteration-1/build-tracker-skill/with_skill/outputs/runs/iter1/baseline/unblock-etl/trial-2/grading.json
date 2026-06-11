@@ -1,0 +1,17 @@
+{
+  "task": "unblock-etl",
+  "trial": 2,
+  "passed": false,
+  "expectations": [
+    {
+      "text": "ETL task is in_progress",
+      "passed": false,
+      "evidence": "sql returned [['blocked']]"
+    },
+    {
+      "text": "Priya commented on the task",
+      "passed": false,
+      "evidence": "sql returned [[0]]"
+    }
+  ]
+}

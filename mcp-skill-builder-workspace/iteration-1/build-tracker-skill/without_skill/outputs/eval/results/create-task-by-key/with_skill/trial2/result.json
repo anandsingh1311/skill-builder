@@ -1,0 +1,72 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 25222,
+  "duration_api_ms": 27092,
+  "ttft_ms": 5659,
+  "ttft_stream_ms": 4844,
+  "time_to_request_ms": 9,
+  "num_turns": 6,
+  "result": "Done! I've created the task in the Data Platform project:\n- **Task ID**: 17\n- **Title**: Backfill missing event timestamps\n- **Description**: Events from May 28-30 are missing timestamps.\n- **Priority**: High\n- **Status**: Todo (default for new tasks)",
+  "stop_reason": "end_turn",
+  "session_id": "ee39b3f4-d69b-4cd1-a8f2-7e406656a6f9",
+  "total_cost_usd": 0.0418437,
+  "usage": {
+    "input_tokens": 52,
+    "cache_creation_input_tokens": 9966,
+    "cache_read_input_tokens": 149847,
+    "output_tokens": 1246,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 9966,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 186,
+        "cache_read_input_tokens": 27315,
+        "cache_creation_input_tokens": 332,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 332
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 612,
+      "outputTokens": 1263,
+      "cacheReadInputTokens": 149847,
+      "cacheCreationInputTokens": 9966,
+      "webSearchRequests": 0,
+      "costUSD": 0.0418437,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01RZJZrVK5MYWqevqUTTmgV1",
+      "tool_input": {
+        "command": "cat <<'EOF'\nconst axios = require('axios');\n\nasync function run() {\n  // This is a placeholder - the actual tool will be called\n  console.log(\"Ready to use tracker tools\");\n}\n\nrun();\nEOF\n",
+        "description": "Verify environment is ready"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "69ca5262-6c81-46f8-97c0-aba9352746bb",
+  "_returncode": 0
+}

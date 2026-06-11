@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 15053,
+  "duration_api_ms": 16152,
+  "ttft_ms": 2760,
+  "ttft_stream_ms": 1106,
+  "time_to_request_ms": 11,
+  "num_turns": 7,
+  "result": "Done! I've updated the project tracker:\n- Task \"Add biometric unlock\" is now marked as **done**\n- Task is assigned to **Sara Ito**",
+  "stop_reason": "end_turn",
+  "session_id": "df47acd7-6d25-48e5-8cfb-0241ad751515",
+  "total_cost_usd": 0.03672680000000001,
+  "usage": {
+    "input_tokens": 54,
+    "cache_creation_input_tokens": 8508,
+    "cache_read_input_tokens": 143788,
+    "output_tokens": 948,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 8508,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 99,
+        "cache_read_input_tokens": 25808,
+        "cache_creation_input_tokens": 381,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 381
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 522,
+      "outputTokens": 962,
+      "cacheReadInputTokens": 143788,
+      "cacheCreationInputTokens": 8508,
+      "webSearchRequests": 0,
+      "costUSD": 0.03672680000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "eb801c10-bbcc-40db-bac7-a92cd3c11731",
+  "_returncode": 0
+}

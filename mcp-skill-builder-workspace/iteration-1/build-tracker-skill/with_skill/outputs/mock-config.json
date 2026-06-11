@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tracker": {
+      "command": "/Users/anandkumarsingh/skill-builder/.venv/bin/python",
+      "args": ["/Users/anandkumarsingh/skill-builder/mcp-skill-builder-workspace/iteration-1/build-tracker-skill/with_skill/outputs/mock_server.py"]
+    }
+  }
+}

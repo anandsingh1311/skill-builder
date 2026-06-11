@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 19860,
+  "duration_api_ms": 21401,
+  "ttft_ms": 2991,
+  "ttft_stream_ms": 1748,
+  "time_to_request_ms": 10,
+  "num_turns": 6,
+  "result": "Done! I found the tracker task \"Fix login redirect loop on Safari\" (ID: 1) and updated its status from \"in_progress\" to \"blocked\".",
+  "stop_reason": "end_turn",
+  "session_id": "8987d348-ccf1-4081-8ba2-9d3f49d4e2d5",
+  "total_cost_usd": 0.0347362,
+  "usage": {
+    "input_tokens": 52,
+    "cache_creation_input_tokens": 7953,
+    "cache_read_input_tokens": 142662,
+    "output_tokens": 798,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 7953,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 80,
+        "cache_read_input_tokens": 25411,
+        "cache_creation_input_tokens": 223,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 223
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 504,
+      "outputTokens": 812,
+      "cacheReadInputTokens": 142662,
+      "cacheCreationInputTokens": 7953,
+      "webSearchRequests": 0,
+      "costUSD": 0.0347362,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6ec31539-91d3-4679-89d1-8cf25ad45174",
+  "_returncode": 0
+}

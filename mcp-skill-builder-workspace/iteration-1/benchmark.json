@@ -1,0 +1,306 @@
+{
+  "metadata": {
+    "skill_name": "mcp-skill-builder",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-06-11T01:04:09Z",
+    "evals_run": [
+      0,
+      1
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 1358.2,
+        "tokens": 81832,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Generated skill has SKILL.md with valid frontmatter (name + description)",
+          "passed": true,
+          "evidence": "tracker-skill/SKILL.md: name='acme-tracker', desc=yes"
+        },
+        {
+          "text": "Mock MCP server passes tool parity vs real server (introspect --diff)",
+          "passed": true,
+          "evidence": "PARITY OK: 9 tools match /tmp/fixture_tools.json\nProcessing request of type ListToolsRequest"
+        },
+        {
+          "text": "Mock is database-backed: write tool call persists to SQLite",
+          "passed": true,
+          "evidence": "comments rows 4 -> 5 in tracker.db (tool error: False)"
+        },
+        {
+          "text": "Simulations ran: >=3 distinct tasks in BOTH configs",
+          "passed": true,
+          "evidence": "with_skill tasks=6, baseline tasks=6, total result files=36"
+        },
+        {
+          "text": "No trial poisoned by usage-limit errors",
+          "passed": true,
+          "evidence": "0/36 poisoned"
+        },
+        {
+          "text": "Report states numeric pass rates for both configurations",
+          "passed": true,
+          "evidence": "REPORT.md: numbers=True, both configs named=True"
+        },
+        {
+          "text": "Skill documents >=2 planted quirks",
+          "passed": true,
+          "evidence": "quirk hits: {'project-key-vs-id': True, 'err409-done-needs-assignee': True, 'err403-suspended-user': True, 'title-only-search-or-pagination': True}"
+        },
+        {
+          "text": "'Real' tracker DB contents unchanged from seed",
+          "passed": true,
+          "evidence": "tables match seed"
+        }
+      ],
+      "notes": [],
+      "eval_name": "build-tracker-skill"
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 1451.4,
+        "tokens": 88144,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Generated skill has SKILL.md with valid frontmatter (name + description)",
+          "passed": true,
+          "evidence": "project-tracker-skill/SKILL.md: name='project-tracker', desc=yes"
+        },
+        {
+          "text": "Mock MCP server passes tool parity vs real server (introspect --diff)",
+          "passed": true,
+          "evidence": "PARITY OK: 9 tools match /tmp/fixture_tools.json\nProcessing request of type ListToolsRequest"
+        },
+        {
+          "text": "Mock is database-backed: write tool call persists to SQLite",
+          "passed": true,
+          "evidence": "comments rows 4 -> 5 in tracker.db (tool error: False)"
+        },
+        {
+          "text": "Simulations ran: >=3 distinct tasks in BOTH configs",
+          "passed": true,
+          "evidence": "with_skill tasks=6, baseline tasks=6, total result files=36"
+        },
+        {
+          "text": "No trial poisoned by usage-limit errors",
+          "passed": true,
+          "evidence": "0/36 poisoned"
+        },
+        {
+          "text": "Report states numeric pass rates for both configurations",
+          "passed": true,
+          "evidence": "REPORT.md: numbers=True, both configs named=True"
+        },
+        {
+          "text": "Skill explains ERR_409 (assign-before-done) and id-vs-name lookup",
+          "passed": true,
+          "evidence": "quirk hits: {'project-key-vs-id': True, 'err409-done-needs-assignee': True, 'err403-suspended-user': True, 'title-only-search-or-pagination': True}"
+        },
+        {
+          "text": "'Real' tracker DB contents unchanged from seed",
+          "passed": true,
+          "evidence": "tables match seed"
+        }
+      ],
+      "notes": [],
+      "eval_name": "fix-agent-misuse"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 620.0,
+        "tokens": 25335,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Generated skill has SKILL.md with valid frontmatter (name + description)",
+          "passed": true,
+          "evidence": "project-tracker/SKILL.md: name='project-tracker', desc=yes"
+        },
+        {
+          "text": "Mock MCP server passes tool parity vs real server (introspect --diff)",
+          "passed": true,
+          "evidence": "PARITY OK: 9 tools match /tmp/fixture_tools.json\nProcessing request of type ListToolsRequest"
+        },
+        {
+          "text": "Mock is database-backed: write tool call persists to SQLite",
+          "passed": true,
+          "evidence": "comments rows 3 -> 4 in probe.db (tool error: False)"
+        },
+        {
+          "text": "Simulations ran: >=3 distinct tasks in BOTH configs",
+          "passed": true,
+          "evidence": "with_skill tasks=6, baseline tasks=6, total result files=36"
+        },
+        {
+          "text": "No trial poisoned by usage-limit errors",
+          "passed": true,
+          "evidence": "0/36 poisoned"
+        },
+        {
+          "text": "Report states numeric pass rates for both configurations",
+          "passed": true,
+          "evidence": "REPORT.md: numbers=True, both configs named=True"
+        },
+        {
+          "text": "Skill documents >=2 planted quirks",
+          "passed": true,
+          "evidence": "quirk hits: {'project-key-vs-id': True, 'err409-done-needs-assignee': True, 'err403-suspended-user': True, 'title-only-search-or-pagination': True}"
+        },
+        {
+          "text": "'Real' tracker DB contents unchanged from seed",
+          "passed": true,
+          "evidence": "tables match seed"
+        }
+      ],
+      "notes": [],
+      "eval_name": "build-tracker-skill"
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 692.4,
+        "tokens": 75748,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Generated skill has SKILL.md with valid frontmatter (name + description)",
+          "passed": true,
+          "evidence": "skill/project-tracker/SKILL.md: name='project-tracker', desc=yes"
+        },
+        {
+          "text": "Mock MCP server passes tool parity vs real server (introspect --diff)",
+          "passed": true,
+          "evidence": "PARITY OK: 9 tools match /tmp/fixture_tools.json\nProcessing request of type ListToolsRequest"
+        },
+        {
+          "text": "Mock is database-backed: write tool call persists to SQLite",
+          "passed": true,
+          "evidence": "comments rows 3 -> 4 in probe.db (tool error: False)"
+        },
+        {
+          "text": "Simulations ran: >=3 distinct tasks in BOTH configs",
+          "passed": true,
+          "evidence": "with_skill tasks=6, baseline tasks=6, total result files=36"
+        },
+        {
+          "text": "No trial poisoned by usage-limit errors",
+          "passed": true,
+          "evidence": "0/36 poisoned"
+        },
+        {
+          "text": "Report states numeric pass rates for both configurations",
+          "passed": true,
+          "evidence": "REPORT.md: numbers=True, both configs named=True"
+        },
+        {
+          "text": "Skill explains ERR_409 (assign-before-done) and id-vs-name lookup",
+          "passed": true,
+          "evidence": "quirk hits: {'project-key-vs-id': True, 'err409-done-needs-assignee': True, 'err403-suspended-user': True, 'title-only-search-or-pagination': True}"
+        },
+        {
+          "text": "'Real' tracker DB contents unchanged from seed",
+          "passed": true,
+          "evidence": "tables match seed"
+        }
+      ],
+      "notes": [],
+      "eval_name": "fix-agent-misuse"
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 1404.8,
+        "stddev": 65.9024,
+        "min": 1358.2,
+        "max": 1451.4
+      },
+      "tokens": {
+        "mean": 84988.0,
+        "stddev": 4463.258,
+        "min": 81832,
+        "max": 88144
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 656.2,
+        "stddev": 51.1945,
+        "min": 620.0,
+        "max": 692.4
+      },
+      "tokens": {
+        "mean": 50541.5,
+        "stddev": 35647.3742,
+        "min": 25335,
+        "max": 75748
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+748.6",
+      "tokens": "+34446"
+    }
+  },
+  "notes": [
+    "All 8 meta-assertions pass in BOTH configurations (8/8 everywhere) \u2014 they verify process compliance (artifacts exist, mock parity, DB-backed writes, prod DB untouched) and a strong orchestrating model can satisfy all of them unaided. At this task difficulty the assertions do not differentiate skill value.",
+    "The differentiation is one level down, in the EVIDENCE QUALITY of the inner Haiku simulations. With-skill runs produced discriminating task suites: inner baseline Haiku failed on planted quirks (eval-0: 13/18 = 72%; eval-1: 17/18 = 94%) and the generated skill lifted both to 18/18. Both without-skill runs produced saturated suites (18/18 vs 18/18) \u2014 when the user asked for 'numbers proving the skill helps', the unaided agents delivered numbers that prove nothing. The skill's simulation-guide rule ('at least half the tasks should cross a quirk') appears to be what created measurable evidence.",
+    "Time and token deltas are NOT trustworthy this iteration: every run was killed mid-flight by a session usage limit and finished by a continuation agent. with_skill totals include original+continuation work; the without_skill totals for eval-0 are missing the original agent's tokens entirely (hence tokens stddev \u00b135647). Treat +748s/+34k as artifacts of the disruption, not skill overhead.",
+    "Both without-skill runs independently invented TRACKER_DB env-var DB isolation (one throwaway DB per trial) \u2014 arguably cleaner than the skill's colocated-DB-with-reset design for parallel trials. Worth folding into the skill's mock-server guide.",
+    "All four generated tracker skills documented the planted quirks (project key vs id, ERR_409 assign-before-done, suspended users, title-only search), so quirk-discovery happens with or without the skill; the skill's contribution is the validation harness, not domain insight."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "task": "count-todo-tasks",
+  "trial": 2,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "answer says 9",
+      "passed": true,
+      "evidence": "final answer contains '9'"
+    }
+  ]
+}

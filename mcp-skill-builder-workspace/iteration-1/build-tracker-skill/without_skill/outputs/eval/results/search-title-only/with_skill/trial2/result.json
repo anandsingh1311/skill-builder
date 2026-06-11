@@ -1,0 +1,72 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 57736,
+  "duration_api_ms": 63297,
+  "ttft_ms": 2506,
+  "ttft_stream_ms": 1984,
+  "time_to_request_ms": 15,
+  "num_turns": 5,
+  "result": "Done! I've successfully set the OAuth redirect task to blocked status:\n\n- **Task:** \"Fix login redirect loop on Safari\" (ID: 1)\n- **Previous status:** in_progress\n- **New status:** blocked \u2713\n\nThe update has been verified and the tracker now shows the task as blocked.",
+  "stop_reason": "end_turn",
+  "session_id": "ae68fa17-9790-4f48-99a6-68c54c75c287",
+  "total_cost_usd": 0.08083045,
+  "usage": {
+    "input_tokens": 44,
+    "cache_creation_input_tokens": 10897,
+    "cache_read_input_tokens": 123671,
+    "output_tokens": 1657,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10897,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 143,
+        "cache_read_input_tokens": 28045,
+        "cache_creation_input_tokens": 533,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 533
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 614,
+      "outputTokens": 3403,
+      "cacheReadInputTokens": 296812,
+      "cacheCreationInputTokens": 20278,
+      "webSearchRequests": 0,
+      "costUSD": 0.08083045,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01BE3Srz9fap9Uu3Gt4iT5d7",
+      "tool_input": {
+        "command": "cat > /tmp/search_redirect.json << 'EOF'\n{\n  \"query_text\": \"redirect\",\n  \"cursor\": 0\n}\nEOF\ncat /tmp/search_redirect.json",
+        "description": "Create a JSON file with the search query parameters"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "448fe633-49a5-48b9-9f4d-66bea634a895",
+  "_returncode": 0
+}

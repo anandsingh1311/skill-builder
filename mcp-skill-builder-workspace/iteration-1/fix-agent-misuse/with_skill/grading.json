@@ -1,0 +1,47 @@
+{
+  "run_id": "fix-agent-misuse-with_skill",
+  "passed": true,
+  "score": "8/8",
+  "expectations": [
+    {
+      "text": "Generated skill has SKILL.md with valid frontmatter (name + description)",
+      "passed": true,
+      "evidence": "project-tracker-skill/SKILL.md: name='project-tracker', desc=yes"
+    },
+    {
+      "text": "Mock MCP server passes tool parity vs real server (introspect --diff)",
+      "passed": true,
+      "evidence": "PARITY OK: 9 tools match /tmp/fixture_tools.json\nProcessing request of type ListToolsRequest"
+    },
+    {
+      "text": "Mock is database-backed: write tool call persists to SQLite",
+      "passed": true,
+      "evidence": "comments rows 4 -> 5 in tracker.db (tool error: False)"
+    },
+    {
+      "text": "Simulations ran: >=3 distinct tasks in BOTH configs",
+      "passed": true,
+      "evidence": "with_skill tasks=6, baseline tasks=6, total result files=36"
+    },
+    {
+      "text": "No trial poisoned by usage-limit errors",
+      "passed": true,
+      "evidence": "0/36 poisoned"
+    },
+    {
+      "text": "Report states numeric pass rates for both configurations",
+      "passed": true,
+      "evidence": "REPORT.md: numbers=True, both configs named=True"
+    },
+    {
+      "text": "Skill explains ERR_409 (assign-before-done) and id-vs-name lookup",
+      "passed": true,
+      "evidence": "quirk hits: {'project-key-vs-id': True, 'err409-done-needs-assignee': True, 'err403-suspended-user': True, 'title-only-search-or-pagination': True}"
+    },
+    {
+      "text": "'Real' tracker DB contents unchanged from seed",
+      "passed": true,
+      "evidence": "tables match seed"
+    }
+  ]
+}

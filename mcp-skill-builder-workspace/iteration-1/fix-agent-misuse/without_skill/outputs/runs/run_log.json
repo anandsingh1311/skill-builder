@@ -1,0 +1,218 @@
+[
+  {
+    "config": "with_skill",
+    "trial": 1,
+    "task": "comment-author-id",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 1,
+    "task": "suspended-user-fallback",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 1,
+    "task": "create-task-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 1,
+    "task": "done-requires-assignee",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 1,
+    "task": "duplicate-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 1,
+    "task": "paginated-count",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 2,
+    "task": "create-task-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 2,
+    "task": "comment-author-id",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 2,
+    "task": "done-requires-assignee",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 2,
+    "task": "suspended-user-fallback",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 2,
+    "task": "duplicate-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 2,
+    "task": "paginated-count",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 3,
+    "task": "paginated-count",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 3,
+    "task": "create-task-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 3,
+    "task": "comment-author-id",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 3,
+    "task": "suspended-user-fallback",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 3,
+    "task": "duplicate-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "with_skill",
+    "trial": 3,
+    "task": "done-requires-assignee",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 1,
+    "task": "create-task-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 1,
+    "task": "duplicate-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 1,
+    "task": "paginated-count",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 1,
+    "task": "suspended-user-fallback",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 1,
+    "task": "comment-author-id",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 1,
+    "task": "done-requires-assignee",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 2,
+    "task": "duplicate-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 2,
+    "task": "create-task-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 2,
+    "task": "suspended-user-fallback",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 2,
+    "task": "comment-author-id",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 2,
+    "task": "done-requires-assignee",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 2,
+    "task": "paginated-count",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 3,
+    "task": "paginated-count",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 3,
+    "task": "duplicate-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 3,
+    "task": "suspended-user-fallback",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 3,
+    "task": "comment-author-id",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 3,
+    "task": "create-task-project-key",
+    "status": "ok"
+  },
+  {
+    "config": "without_skill",
+    "trial": 3,
+    "task": "done-requires-assignee",
+    "status": "ok"
+  }
+]

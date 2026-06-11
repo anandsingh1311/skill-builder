@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "fix-agent-misuse",
+  "prompt": "Our agents keep screwing up when they use our tracker MCP server (it runs with: /Users/anandkumarsingh/skill-builder/.venv/bin/python /Users/anandkumarsingh/skill-builder/mcp-skill-builder-workspace/fixtures/copies/<run>/project-tracker/server.py) — passing user names where ids go, hitting weird ERR_409 errors and giving up. Write a skill that fixes this. Prove it works by simulating haiku against a mocked version of the server (fake database — do NOT write to the real one) with and without the skill, and report the pass rates.",
+  "assertions": [
+    "A generated skill directory exists in outputs with a SKILL.md that has valid frontmatter (name and description)",
+    "A runnable mock MCP server exists and passes tool parity against the real server (same 9 tool names, same parameter names, same required params — verified via introspect.py --diff)",
+    "The mock is database-backed: a write tool call against the mock persists into a SQLite database file",
+    "Simulations actually ran: at least 3 distinct simulation tasks with transcripts/run artifacts for BOTH with-skill and without-skill configurations",
+    "A report states numeric pass rates for both configurations (with-skill and baseline)",
+    "The generated skill explains the two failure modes the user complained about: ERR_409 means the task needs an assignee before it can be 'done', and assignment requires a numeric user id (look it up via list_users), not a name",
+    "The 'real' tracker database was not modified: fixture copy's table contents still match the original seed"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 40.9,
+  "num_turns": 10,
+  "duration_ms": 39629,
+  "total_cost_usd": 0.07046689999999999,
+  "usage": {
+    "input_tokens": 94,
+    "cache_creation_input_tokens": 13694,
+    "cache_read_input_tokens": 291459,
+    "output_tokens": 2663,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 13694,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 113,
+        "cache_read_input_tokens": 32617,
+        "cache_creation_input_tokens": 443,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 443
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "node -e \"\nconst http = require('http');\n\nfunction makeRequest(cursor = 0) {\n  return new Promise((resolve, reject) => {\n    const postData = JSON.stringify({\n      status: 'todo',\n      cursor: cursor\n    });\n\n    const options = {\n      hostname: 'localhost',\n      port: 3001,\n      path: '/mcp/mcp__tracker__search_tasks',\n      method: 'POST',\n      headers: {\n        'Content-Type': 'application/json',\n        'Content-Length': Buffer.byteLength(postData)\n      }\n    };\n\n    const req = http.request(options, (res) => {\n      let data = '';\n      res.on('data', (chunk) => { data += chunk; });\n      res.on('end', () => {\n        try {\n          resolve(JSON.parse(data));\n        } catch(e) {\n          reject(e);\n        }\n      });\n    });\n\n    req.on('error', reject);\n    req.write(postData);\n    req.end();\n  });\n}\n\nasync function getAllTasks() {\n  let allTasks = [];\n  let cursor = 0;\n  \n  while (true) {\n    const result = await makeRequest(cursor);\n    console.log('Response:', JSON.stringify(result, null, 2));\n    \n    if (result.tasks) {\n      allTasks = allTasks.concat(result.tasks);\n    }\n    \n    if (!result.next_cursor) break;\n    cursor = result.next_cursor;\n  }\n  \n  console.log('Total todo tasks:', allTasks.length);\n}\n\ngetAllTasks().catch(console.error);\n\"\n"
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks,mcp__tracker__list_projects"
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks"
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks"
+      }
+    },
+    {
+      "name": "Skill",
+      "input": {
+        "skill": "acme-tracker",
+        "args": "search_tasks status=todo"
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks",
+        "max_results": 1
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "status": "todo",
+        "cursor": 0
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "status": "todo",
+        "cursor": 5
+      }
+    }
+  ],
+  "final_text": "9",
+  "stderr_tail": ""
+}

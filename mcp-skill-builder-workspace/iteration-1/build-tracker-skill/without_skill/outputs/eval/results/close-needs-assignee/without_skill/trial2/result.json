@@ -1,0 +1,71 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 47218,
+  "duration_api_ms": 48452,
+  "ttft_ms": 2795,
+  "ttft_stream_ms": 1730,
+  "time_to_request_ms": 10,
+  "num_turns": 7,
+  "result": "Done! I've successfully updated the project tracker for Sara Ito's \"Add biometric unlock\" task:\n\n\u2705 **Task assigned** to Sara Ito (user ID 4)\n\u2705 **Status updated** to \"done\" (transitioned through in_progress first per the tracker's workflow)\n\nThe task is now marked as complete and recorded under Sara Ito's name.",
+  "stop_reason": "end_turn",
+  "session_id": "e0f954b1-70ed-48cc-9640-5201b655e7b6",
+  "total_cost_usd": 0.07263655,
+  "usage": {
+    "input_tokens": 62,
+    "cache_creation_input_tokens": 9406,
+    "cache_read_input_tokens": 170524,
+    "output_tokens": 1465,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 9406,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 10,
+        "output_tokens": 156,
+        "cache_read_input_tokens": 26533,
+        "cache_creation_input_tokens": 554,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 554
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 566,
+      "outputTokens": 2869,
+      "cacheReadInputTokens": 270073,
+      "cacheCreationInputTokens": 18931,
+      "webSearchRequests": 0,
+      "costUSD": 0.07263655,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01CiVNY5JzZbpnfwRRf2B69V",
+      "tool_input": {
+        "command": "curl -s http://localhost:9999/api/tasks/2/status -X PATCH -H \"Content-Type: application/json\" -d '{\"status\":\"done\"}' && echo \"\" && curl -s http://localhost:9999/api/tasks/2/assign -X PATCH -H \"Content-Type: application/json\" -d '{\"user_id\":4}'"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d5a550d4-1870-4b67-bb94-8e4062db6293",
+  "_returncode": 0
+}

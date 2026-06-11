@@ -1,0 +1,17 @@
+{
+  "task": "close-payment-webhook",
+  "trial": 1,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 5 is done",
+      "passed": true,
+      "evidence": "sql returned [['done']]"
+    },
+    {
+      "text": "task 5 credited to Sara (user 4)",
+      "passed": true,
+      "evidence": "sql returned [[4]]"
+    }
+  ]
+}

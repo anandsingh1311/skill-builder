@@ -1,0 +1,17 @@
+{
+  "task": "assign-devon-fallback",
+  "trial": 1,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task ended up with Priya (Devon is suspended)",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    },
+    {
+      "text": "explanatory comment from Priya exists",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    }
+  ]
+}

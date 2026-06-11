@@ -1,0 +1,56 @@
+{
+  "server_name": "tracker",
+  "mcp_config": "mock-config.json",
+  "db": "tracker.db",
+  "reset": "/Users/anandkumarsingh/skill-builder/.venv/bin/python /Users/anandkumarsingh/skill-builder/mcp-skill-builder-workspace/iteration-1/build-tracker-skill/with_skill/outputs/seed_db.py",
+  "tasks": [
+    {
+      "id": "close-cookie-banner",
+      "prompt": "The cookie banner bug is fixed — find that task in the tracker and mark it done. If anything gets in the way, sort it out so the task ends up done.",
+      "assertions": [
+        {"name": "cookie banner task is done", "sql": "SELECT status FROM tasks WHERE id=12", "expect_rows": [["done"]]},
+        {"name": "task has an assignee", "sql": "SELECT assignee_id FROM tasks WHERE id=12", "expect_gte": 1}
+      ]
+    },
+    {
+      "id": "reassign-marcus-urgent",
+      "prompt": "Marcus is completely overloaded. Move every urgent task currently assigned to him over to Sara.",
+      "assertions": [
+        {"name": "all three urgent tasks now belong to Sara", "sql": "SELECT COUNT(*) FROM tasks WHERE id IN (1,3,5) AND assignee_id=4", "expect_scalar": 3},
+        {"name": "Marcus has no urgent tasks left", "sql": "SELECT COUNT(*) FROM tasks WHERE assignee_id=2 AND priority='urgent'", "expect_scalar": 0},
+        {"name": "Sara has exactly her 2 originals plus the 3 moved tasks", "sql": "SELECT COUNT(*) FROM tasks WHERE assignee_id=4", "expect_scalar": 5}
+      ]
+    },
+    {
+      "id": "create-backfill-task",
+      "prompt": "Open a new high-priority task in the Data Platform project: title 'Backfill missing order events', description 'Orders from May 28-30 are missing from the events table.'",
+      "assertions": [
+        {"name": "task created in Data Platform with right title and priority", "sql": "SELECT COUNT(*) FROM tasks WHERE project_id=2 AND title='Backfill missing order events' AND priority='high'", "expect_scalar": 1},
+        {"name": "no duplicate created", "sql": "SELECT COUNT(*) FROM tasks WHERE title='Backfill missing order events'", "expect_scalar": 1}
+      ]
+    },
+    {
+      "id": "count-todo-tasks",
+      "prompt": "How many tasks across all projects are currently in 'todo' status? Reply with the count as a digit.",
+      "assertions": [
+        {"name": "answer says 9", "answer_contains": "9"}
+      ]
+    },
+    {
+      "id": "unblock-etl",
+      "prompt": "Good news: the vendor resolved ticket #4821, so the warehouse sync work is no longer blocked. Find that task, add a comment from Priya saying the vendor ticket is resolved, and move the task back to in_progress.",
+      "assertions": [
+        {"name": "ETL task is in_progress", "sql": "SELECT status FROM tasks WHERE id=5", "expect_rows": [["in_progress"]]},
+        {"name": "Priya commented on the task", "sql": "SELECT COUNT(*) FROM comments WHERE task_id=5 AND author_id=1", "expect_gte": 1}
+      ]
+    },
+    {
+      "id": "assign-devon-fallback",
+      "prompt": "Devon used to own data-platform docs, so assign the 'Document the events schema' task to Devon. If that doesn't work for any reason, assign it to Priya instead and add a comment on the task (authored by Priya) explaining why she got it.",
+      "assertions": [
+        {"name": "task ended up with Priya (Devon is suspended)", "sql": "SELECT assignee_id FROM tasks WHERE id=8", "expect_rows": [[1]]},
+        {"name": "explanatory comment from Priya exists", "sql": "SELECT COUNT(*) FROM comments WHERE task_id=8 AND author_id=1", "expect_gte": 1}
+      ]
+    }
+  ]
+}

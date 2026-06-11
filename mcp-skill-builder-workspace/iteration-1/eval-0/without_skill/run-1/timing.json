@@ -1,0 +1,6 @@
+{
+  "total_tokens": 25335,
+  "duration_ms": 619973,
+  "total_duration_seconds": 620.0,
+  "note": "continuation run only (redid sims + report). The original agent built all artifacts but was killed by the usage limit before reporting and its token count was not captured, so totals understate the true cost of this arm."
+}

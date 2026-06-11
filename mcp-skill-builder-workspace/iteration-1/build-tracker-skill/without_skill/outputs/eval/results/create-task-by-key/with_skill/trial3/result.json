@@ -1,0 +1,71 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 15377,
+  "duration_api_ms": 16523,
+  "ttft_ms": 2147,
+  "ttft_stream_ms": 1335,
+  "time_to_request_ms": 12,
+  "num_turns": 6,
+  "result": "Done! Created task #17 in the Data Platform project:\n- **Title:** Backfill missing event timestamps\n- **Priority:** high\n- **Status:** todo\n- **Description:** Events from May 28-30 are missing timestamps.",
+  "stop_reason": "end_turn",
+  "session_id": "5c9627d8-1b8b-4aba-a44f-ee2395a5bc94",
+  "total_cost_usd": 0.041313300000000004,
+  "usage": {
+    "input_tokens": 52,
+    "cache_creation_input_tokens": 9927,
+    "cache_read_input_tokens": 149873,
+    "output_tokens": 1157,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 9927,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 157,
+        "cache_read_input_tokens": 27313,
+        "cache_creation_input_tokens": 295,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 295
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 612,
+      "outputTokens": 1172,
+      "cacheReadInputTokens": 149873,
+      "cacheCreationInputTokens": 9927,
+      "webSearchRequests": 0,
+      "costUSD": 0.041313300000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01Wamfm5C6bmaPGdJFCKTgS5",
+      "tool_input": {
+        "command": "curl -X POST http://localhost:3000/mcp/tracker/list_projects 2>/dev/null | jq ."
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0d743958-780d-4440-81fd-c037762f23fd",
+  "_returncode": 0
+}

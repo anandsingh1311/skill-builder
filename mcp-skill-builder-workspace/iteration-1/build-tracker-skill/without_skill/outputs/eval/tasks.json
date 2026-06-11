@@ -1,0 +1,36 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "trials_per_config": 3,
+  "tasks": [
+    {
+      "id": "list-all-todo",
+      "tests": "pagination (11 matches across 3 pages)",
+      "prompt": "Using the project tracker tools, find ALL tasks that currently have status 'todo'. End your reply with a single line in exactly this format: IDS: <comma-separated task ids>"
+    },
+    {
+      "id": "close-needs-assignee",
+      "tests": "hidden rule: done requires an assignee (ERR_409)",
+      "prompt": "Sara Ito just finished the 'Add biometric unlock' work. Update the project tracker so that task is marked done and recorded as hers."
+    },
+    {
+      "id": "assign-suspended-fallback",
+      "tests": "hidden rule: inactive users can't be assigned (ERR_403)",
+      "prompt": "In the project tracker, assign the 'Cookie banner shows twice' task to Devon Cole. If the tracker won't let Devon take it, assign it to Marcus Webb instead."
+    },
+    {
+      "id": "create-task-by-key",
+      "tests": "quirk: create_task wants project KEY string, not numeric id",
+      "prompt": "Create a new high priority task in the Data Platform project in the tracker. Title: 'Backfill missing event timestamps'. Description: 'Events from May 28-30 are missing timestamps.'"
+    },
+    {
+      "id": "search-title-only",
+      "tests": "quirk: search matches titles only, 'OAuth' lives in the description",
+      "prompt": "Find the tracker task about the OAuth redirect problem and set its status to blocked."
+    },
+    {
+      "id": "triage-urgent-unassigned",
+      "tests": "no priority filter + pagination + multi-step writes",
+      "prompt": "Do a triage pass in the project tracker: find EVERY urgent task that has no assignee, assign each one to Priya Raman, and set each one to in_progress. End your reply with a single line in exactly this format: IDS: <comma-separated task ids you updated>"
+    }
+  ]
+}

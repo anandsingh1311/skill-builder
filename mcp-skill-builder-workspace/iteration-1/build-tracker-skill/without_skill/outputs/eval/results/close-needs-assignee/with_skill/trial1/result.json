@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 14538,
+  "duration_api_ms": 15790,
+  "ttft_ms": 1831,
+  "ttft_stream_ms": 1380,
+  "time_to_request_ms": 7,
+  "num_turns": 7,
+  "result": "Done! I've updated the tracker:\n- **Task**: \"Add biometric unlock\" (ID: 2)\n- **Assigned to**: Sara Ito (sara@acme.dev)\n- **Status**: \u2713 done\n\nThe task is now recorded as completed and attributed to Sara.",
+  "stop_reason": "end_turn",
+  "session_id": "ff2c09c8-a192-4780-8b4b-924836b5602c",
+  "total_cost_usd": 0.042289,
+  "usage": {
+    "input_tokens": 52,
+    "cache_creation_input_tokens": 10431,
+    "cache_read_input_tokens": 151160,
+    "output_tokens": 1126,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10431,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 123,
+        "cache_read_input_tokens": 27941,
+        "cache_creation_input_tokens": 171,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 171
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 601,
+      "outputTokens": 1142,
+      "cacheReadInputTokens": 151160,
+      "cacheCreationInputTokens": 10431,
+      "webSearchRequests": 0,
+      "costUSD": 0.042289,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fa5d5efa-d8a9-42cd-ac4d-93acaf514d24",
+  "_returncode": 0
+}

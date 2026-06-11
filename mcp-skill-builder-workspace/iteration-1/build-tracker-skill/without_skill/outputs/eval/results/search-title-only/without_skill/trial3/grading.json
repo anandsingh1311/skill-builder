@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 1 (Safari redirect loop) status is blocked",
+      "passed": true,
+      "evidence": "row=('blocked', 'urgent', 2)"
+    },
+    {
+      "text": "no other task wrongly set to blocked",
+      "passed": true,
+      "evidence": "unexpected blocked ids=[]"
+    }
+  ]
+}

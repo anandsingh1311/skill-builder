@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 13241,
+  "duration_api_ms": 14299,
+  "ttft_ms": 2384,
+  "ttft_stream_ms": 1316,
+  "time_to_request_ms": 9,
+  "num_turns": 5,
+  "result": "Done! I've created a high priority task in the Data Platform project:\n\n- **Task ID**: 17\n- **Title**: Backfill missing event timestamps\n- **Priority**: High\n- **Status**: To Do\n- **Description**: Events from May 28-30 are missing timestamps.",
+  "stop_reason": "end_turn",
+  "session_id": "9e01b6b1-528e-4b0e-aaae-02f2c8ccff14",
+  "total_cost_usd": 0.0328449,
+  "usage": {
+    "input_tokens": 46,
+    "cache_creation_input_tokens": 7911,
+    "cache_read_input_tokens": 117179,
+    "output_tokens": 942,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 7911,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 145,
+        "cache_read_input_tokens": 25300,
+        "cache_creation_input_tokens": 292,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 292
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 525,
+      "outputTokens": 956,
+      "cacheReadInputTokens": 117179,
+      "cacheCreationInputTokens": 7911,
+      "webSearchRequests": 0,
+      "costUSD": 0.0328449,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dafa13da-97dc-41b9-9b48-5e57bb106809",
+  "_returncode": 0
+}

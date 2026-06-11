@@ -1,0 +1,75 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 22.7,
+  "num_turns": 6,
+  "duration_ms": 21490,
+  "total_cost_usd": 0.0255984,
+  "usage": {
+    "input_tokens": 54,
+    "cache_creation_input_tokens": 1405,
+    "cache_read_input_tokens": 174814,
+    "output_tokens": 937,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1405,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 219,
+        "cache_read_input_tokens": 29773,
+        "cache_creation_input_tokens": 201,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 201
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__list_projects,mcp__tracker__create_task"
+      }
+    },
+    {
+      "name": "mcp__tracker__list_projects",
+      "input": {}
+    },
+    {
+      "name": "mcp__tracker__create_task",
+      "input": {
+        "project_key": "MOB",
+        "title": "Support passkey sign-in",
+        "description": "Implement WebAuthn passkeys as an alternative to passwords.",
+        "priority": "high"
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__get_task"
+      }
+    },
+    {
+      "name": "mcp__tracker__get_task",
+      "input": {
+        "task_id": 31
+      }
+    }
+  ],
+  "final_text": "Done! I've created task **#31** in the Mobile App project with:\n- **Title:** Support passkey sign-in\n- **Description:** Implement WebAuthn passkeys as an alternative to passwords.\n- **Priority:** high\n- **Status:** todo (ready to be picked up)\n\nThe task is unassigned. You can assign it to a team member when they're ready to start work on it.",
+  "stderr_tail": ""
+}

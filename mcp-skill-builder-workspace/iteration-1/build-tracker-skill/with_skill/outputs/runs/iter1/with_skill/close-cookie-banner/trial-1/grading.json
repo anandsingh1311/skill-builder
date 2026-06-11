@@ -1,0 +1,17 @@
+{
+  "task": "close-cookie-banner",
+  "trial": 1,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "cookie banner task is done",
+      "passed": true,
+      "evidence": "sql returned [['done']]"
+    },
+    {
+      "text": "task has an assignee",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    }
+  ]
+}

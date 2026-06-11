@@ -1,0 +1,75 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 18.7,
+  "num_turns": 6,
+  "duration_ms": 17309,
+  "total_cost_usd": 0.024525500000000002,
+  "usage": {
+    "input_tokens": 54,
+    "cache_creation_input_tokens": 1510,
+    "cache_read_input_tokens": 164515,
+    "output_tokens": 888,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1510,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 10,
+        "output_tokens": 117,
+        "cache_read_input_tokens": 27995,
+        "cache_creation_input_tokens": 232,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 232
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__search_tasks,mcp__tracker__add_comment,mcp__tracker__update_task_status"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse sync",
+        "status": "blocked"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse sync 4821"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "warehouse"
+      }
+    },
+    {
+      "name": "mcp__tracker__search_tasks",
+      "input": {
+        "query_text": "4821"
+      }
+    }
+  ],
+  "final_text": "I'm not finding any tasks with those search terms in the MCP tracker. Could you provide either:\n- The task ID number, or\n- More specific details about the task name or project\n\nThis will help me locate the correct task to update.",
+  "stderr_tail": ""
+}

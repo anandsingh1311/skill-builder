@@ -1,0 +1,17 @@
+{
+  "task": "checkout-stripe",
+  "trial": 2,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 17 is in_progress",
+      "passed": true,
+      "evidence": "sql returned [['in_progress']]"
+    },
+    {
+      "text": "task 17 assigned to Tomas (user 5)",
+      "passed": true,
+      "evidence": "sql returned [[5]]"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 27443,
+  "duration_api_ms": 28561,
+  "ttft_ms": 2179,
+  "ttft_stream_ms": 1532,
+  "time_to_request_ms": 9,
+  "num_turns": 7,
+  "result": "I've found all tasks with status 'todo' by paginating through the complete result set. Here are all the todo tasks:\n\n**Page 1:**\n- ID 2: Add biometric unlock\n- ID 3: Crash on photo upload over cellular\n- ID 4: Update onboarding illustrations\n- ID 6: Add dbt tests for revenue models\n- ID 8: Document the events schema\n\n**Page 2:**\n- ID 10: Broken anchor links in docs\n- ID 11: Migrate blog to new CMS\n- ID 12: Cookie banner shows twice\n- ID 13: Localize push notifications\n- ID 15: Checkout page 500s under load\n\n**Page 3:**\n- ID 16: Battery drain from background sync\n\nIDS: 2,3,4,6,8,10,11,12,13,15,16",
+  "stop_reason": "end_turn",
+  "session_id": "343dae25-122e-4e3c-b4ed-8ccfe7121cc6",
+  "total_cost_usd": 0.0466615,
+  "usage": {
+    "input_tokens": 60,
+    "cache_creation_input_tokens": 10586,
+    "cache_read_input_tokens": 177935,
+    "output_tokens": 1401,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10586,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 346,
+        "cache_read_input_tokens": 28035,
+        "cache_creation_input_tokens": 232,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 232
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 616,
+      "outputTokens": 1416,
+      "cacheReadInputTokens": 177935,
+      "cacheCreationInputTokens": 10586,
+      "webSearchRequests": 0,
+      "costUSD": 0.0466615,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b2439b54-0b38-48b9-9ba1-9d21d4424bce",
+  "_returncode": 0
+}

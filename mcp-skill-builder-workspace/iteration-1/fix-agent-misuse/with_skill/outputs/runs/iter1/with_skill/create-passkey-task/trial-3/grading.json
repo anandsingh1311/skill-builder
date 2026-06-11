@@ -1,0 +1,17 @@
+{
+  "task": "create-passkey-task",
+  "trial": 3,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task created in Mobile App with high priority",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    },
+    {
+      "text": "no duplicate created",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    }
+  ]
+}

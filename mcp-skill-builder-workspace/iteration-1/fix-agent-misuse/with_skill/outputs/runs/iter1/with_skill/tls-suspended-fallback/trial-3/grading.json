@@ -1,0 +1,17 @@
+{
+  "task": "tls-suspended-fallback",
+  "trial": 3,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 18 assigned to an active user",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    },
+    {
+      "text": "Priya's comment exists on task 18",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 43703,
+  "duration_api_ms": 44852,
+  "ttft_ms": 3095,
+  "ttft_stream_ms": 1650,
+  "time_to_request_ms": 15,
+  "num_turns": 5,
+  "result": "Done! I've found and updated the OAuth redirect problem task:\n- **Task:** Fix login redirect loop on Safari (Task ID: 1)\n- **Status:** Now set to **blocked** \u2713\n\nThis task was about users on Safari 17 getting stuck in a redirect loop after OAuth, where the state parameter gets dropped.",
+  "stop_reason": "end_turn",
+  "session_id": "10b3cf11-3083-42a9-bbce-208e38046658",
+  "total_cost_usd": 0.07222064999999998,
+  "usage": {
+    "input_tokens": 36,
+    "cache_creation_input_tokens": 8392,
+    "cache_read_input_tokens": 92616,
+    "output_tokens": 932,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 8392,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 127,
+        "cache_read_input_tokens": 25616,
+        "cache_creation_input_tokens": 457,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 457
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 523,
+      "outputTokens": 2956,
+      "cacheReadInputTokens": 281774,
+      "cacheCreationInputTokens": 17957,
+      "webSearchRequests": 0,
+      "costUSD": 0.07222064999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "82908bcc-e2b7-4327-b71a-e58399fd3bb9",
+  "_returncode": 0
+}

@@ -1,0 +1,37 @@
+{
+  "skill_name": "mcp-skill-builder",
+  "evals": [
+    {
+      "id": 0,
+      "name": "build-tracker-skill",
+      "prompt": "We use an internal MCP server for our project tracker. It runs with this command: /Users/anandkumarsingh/skill-builder/.venv/bin/python <FIXTURE>/server.py. Build me a skill for it so agents running on cheap small models like Haiku can do triage work reliably — finding tasks, updating statuses, assigning people, that kind of thing. Test agents must NOT touch the real tracker, so mock it out with a fake database, and show me numbers proving the skill actually helps.",
+      "expected_output": "A skill directory for the tracker MCP server documenting tool selection, workflows and quirks; a DB-backed mock with verified tool parity; simulation results (haiku, with vs without skill) with pass rates showing the skill helps.",
+      "files": ["mcp-skill-builder-workspace/fixtures/project-tracker/"],
+      "assertions": [
+        "A generated skill directory exists in outputs with a SKILL.md that has valid frontmatter (name and description)",
+        "A runnable mock MCP server exists and passes tool parity against the real server (introspect.py --diff clean)",
+        "The mock is database-backed: a write tool call against the mock persists into a SQLite database file",
+        "At least 3 distinct simulation tasks with run artifacts for BOTH with-skill and without-skill configurations",
+        "A report states numeric pass rates for both configurations",
+        "The generated skill documents at least 2 planted quirks (project KEY vs id; ERR_409 done-requires-assignee; ERR_403 suspended user; title-only search/pagination)",
+        "The 'real' tracker database contents still match the original seed"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "fix-agent-misuse",
+      "prompt": "Our agents keep screwing up when they use our tracker MCP server (it runs with: /Users/anandkumarsingh/skill-builder/.venv/bin/python <FIXTURE>/server.py) — passing user names where ids go, hitting weird ERR_409 errors and giving up. Write a skill that fixes this. Prove it works by simulating haiku against a mocked version of the server (fake database — do NOT write to the real one) with and without the skill, and report the pass rates.",
+      "expected_output": "A skill that specifically addresses the reported failure modes (id vs name, ERR_409 = done-requires-assignee), validated by haiku simulations against a DB-backed mock, with reported pass rates for both configurations.",
+      "files": ["mcp-skill-builder-workspace/fixtures/project-tracker/"],
+      "assertions": [
+        "A generated skill directory exists in outputs with a SKILL.md that has valid frontmatter (name and description)",
+        "A runnable mock MCP server exists and passes tool parity against the real server (introspect.py --diff clean)",
+        "The mock is database-backed: a write tool call against the mock persists into a SQLite database file",
+        "At least 3 distinct simulation tasks with run artifacts for BOTH with-skill and without-skill configurations",
+        "A report states numeric pass rates for both configurations",
+        "The generated skill explains ERR_409 (assign before done) and id-vs-name (numeric user id via list_users)",
+        "The 'real' tracker database contents still match the original seed"
+      ]
+    }
+  ]
+}

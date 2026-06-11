@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 12 assigned to Marcus Webb (user 2) after Devon (suspended) fails",
+      "passed": true,
+      "evidence": "row=('todo', 'medium', 2)"
+    }
+  ]
+}

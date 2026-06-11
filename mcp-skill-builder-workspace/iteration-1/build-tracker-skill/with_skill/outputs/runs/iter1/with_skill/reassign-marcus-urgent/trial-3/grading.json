@@ -1,0 +1,22 @@
+{
+  "task": "reassign-marcus-urgent",
+  "trial": 3,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "all three urgent tasks now belong to Sara",
+      "passed": true,
+      "evidence": "sql returned [[3]]"
+    },
+    {
+      "text": "Marcus has no urgent tasks left",
+      "passed": true,
+      "evidence": "sql returned [[0]]"
+    },
+    {
+      "text": "Sara has exactly her 2 originals plus the 3 moved tasks",
+      "passed": true,
+      "evidence": "sql returned [[5]]"
+    }
+  ]
+}

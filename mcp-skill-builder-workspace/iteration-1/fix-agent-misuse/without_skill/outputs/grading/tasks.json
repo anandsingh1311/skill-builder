@@ -1,0 +1,34 @@
+{
+  "tasks": [
+    {
+      "id": "create-task-project-key",
+      "quirk": "create_task wants project_key (string), not project id/name",
+      "prompt": "Using the project tracker, create a task in the Mobile App project titled 'Fix dark mode toggle flicker' with high priority. Describe it briefly."
+    },
+    {
+      "id": "done-requires-assignee",
+      "quirk": "status=done on unassigned task -> ERR_409; must assign first",
+      "prompt": "Sara Ito just finished the 'Update onboarding illustrations' task in the project tracker. Please mark that task as done."
+    },
+    {
+      "id": "suspended-user-fallback",
+      "quirk": "assigning inactive user -> ERR_403; needs fallback per instructions",
+      "prompt": "In the project tracker, assign the 'Nightly ETL job timing out' task to Devon Cole. If that's not possible for any reason, assign it to Sara Ito instead and add a comment from Priya Raman on that task explaining why Devon couldn't take it."
+    },
+    {
+      "id": "comment-author-id",
+      "quirk": "add_comment wants numeric author_id, task found via title-only search",
+      "prompt": "Add a comment from Marcus Webb to the project-tracker task about the cookie banner showing twice. The comment should say: Investigating now."
+    },
+    {
+      "id": "paginated-count",
+      "quirk": "search_tasks pages 5 at a time; must follow next_cursor",
+      "prompt": "Using the project tracker, how many tasks are currently in 'todo' status across all projects? Give me the exact total count."
+    },
+    {
+      "id": "duplicate-project-key",
+      "quirk": "create_project ERR_409 on duplicate key; must retry with valid new key",
+      "prompt": "Set up a new project in the tracker for the Marketing Operations team. Try the key 'MOB' first; if that doesn't work, pick another sensible key yourself. Then create an urgent task in the new project titled 'Launch tracking audit'."
+    }
+  ]
+}

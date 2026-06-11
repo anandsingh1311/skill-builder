@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 26683,
+  "duration_api_ms": 27952,
+  "ttft_ms": 3345,
+  "ttft_stream_ms": 1833,
+  "time_to_request_ms": 9,
+  "num_turns": 12,
+  "result": "IDS: 15,16",
+  "stop_reason": "end_turn",
+  "session_id": "085386ca-6c6f-4fb9-acfe-77ee08f97087",
+  "total_cost_usd": 0.05183470000000001,
+  "usage": {
+    "input_tokens": 70,
+    "cache_creation_input_tokens": 10838,
+    "cache_read_input_tokens": 201477,
+    "output_tokens": 1869,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10838,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 86,
+        "cache_read_input_tokens": 27793,
+        "cache_creation_input_tokens": 726,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 726
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 571,
+      "outputTokens": 1888,
+      "cacheReadInputTokens": 201477,
+      "cacheCreationInputTokens": 10838,
+      "webSearchRequests": 0,
+      "costUSD": 0.05183470000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "719353cd-7379-4262-8901-fd7f987419f2",
+  "_returncode": 0
+}

@@ -1,0 +1,71 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 17576,
+  "duration_api_ms": 19032,
+  "ttft_ms": 2379,
+  "ttft_stream_ms": 1528,
+  "time_to_request_ms": 12,
+  "num_turns": 8,
+  "result": "Done! The \"Add biometric unlock\" task is now marked as complete and assigned to Sara Ito. The task status changed from \"todo\" (unassigned) to \"done\" with Sara (user ID 4) as the assignee.",
+  "stop_reason": "end_turn",
+  "session_id": "36b725c0-6ce9-42e7-b28e-e37d8494ef34",
+  "total_cost_usd": 0.042481200000000004,
+  "usage": {
+    "input_tokens": 52,
+    "cache_creation_input_tokens": 10540,
+    "cache_read_input_tokens": 150152,
+    "output_tokens": 1143,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10540,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 133,
+        "cache_read_input_tokens": 27803,
+        "cache_creation_input_tokens": 418,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 418
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 601,
+      "outputTokens": 1157,
+      "cacheReadInputTokens": 150152,
+      "cacheCreationInputTokens": 10540,
+      "webSearchRequests": 0,
+      "costUSD": 0.042481200000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01Q24ux7qyRC7dhPBDK8QvrF",
+      "tool_input": {
+        "command": "cd /Users/anandkumarsingh && which mcp-tracker 2>/dev/null || echo \"mcp-tracker not in PATH\""
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fd532d3a-388a-4849-94a2-1b097dd2f13e",
+  "_returncode": 0
+}

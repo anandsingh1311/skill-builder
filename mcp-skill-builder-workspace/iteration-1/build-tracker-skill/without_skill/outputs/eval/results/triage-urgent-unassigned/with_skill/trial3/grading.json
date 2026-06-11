@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 15 assigned to Priya (1) and in_progress",
+      "passed": true,
+      "evidence": "row=('in_progress', 'urgent', 1)"
+    },
+    {
+      "text": "task 16 assigned to Priya (1) and in_progress",
+      "passed": true,
+      "evidence": "row=('in_progress', 'urgent', 1)"
+    },
+    {
+      "text": "already-assigned urgent tasks and non-urgent tasks left untouched",
+      "passed": true,
+      "evidence": "checked tasks 1,3,5 (urgent, assigned) and 2,4 (unassigned, not urgent)"
+    }
+  ]
+}

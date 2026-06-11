@@ -1,0 +1,320 @@
+{
+  "runs": [
+    {
+      "config": "with_skill",
+      "trial": 1,
+      "task": "create-task-project-key",
+      "passed": true,
+      "evidence": "task created: project_id=1 (want 1), priority=high (want high)"
+    },
+    {
+      "config": "with_skill",
+      "trial": 1,
+      "task": "done-requires-assignee",
+      "passed": true,
+      "evidence": "task 4: status=done (want done), assignee_id=4 (want 4=Sara)"
+    },
+    {
+      "config": "with_skill",
+      "trial": 1,
+      "task": "suspended-user-fallback",
+      "passed": true,
+      "evidence": "task 5: assignee_id=4 (want 4=Sara), new comment by Priya(id=1)=True"
+    },
+    {
+      "config": "with_skill",
+      "trial": 1,
+      "task": "comment-author-id",
+      "passed": true,
+      "evidence": "comments on task 12: [{'author_id': 2, 'body': 'Investigating now.'}]"
+    },
+    {
+      "config": "with_skill",
+      "trial": 1,
+      "task": "paginated-count",
+      "passed": true,
+      "evidence": "answer text: \"**Total count: 9 tasks in 'todo' status**\\n\\nHere's the breakdown:\\n- **Page 1**: 5 tasks (IDs: 2, 3, 4, 6, 8)\\n- **Page 2**: 4 tasks (IDs: 10, 11, 12, 13)\\n\\nAll 9 '\""
+    },
+    {
+      "config": "with_skill",
+      "trial": 1,
+      "task": "duplicate-project-key",
+      "passed": true,
+      "evidence": "new project 'MKOP' ('Marketing Operations'), key_ok=True, urgent task in it=True"
+    },
+    {
+      "config": "with_skill",
+      "trial": 2,
+      "task": "create-task-project-key",
+      "passed": true,
+      "evidence": "task created: project_id=1 (want 1), priority=high (want high)"
+    },
+    {
+      "config": "with_skill",
+      "trial": 2,
+      "task": "done-requires-assignee",
+      "passed": true,
+      "evidence": "task 4: status=done (want done), assignee_id=4 (want 4=Sara)"
+    },
+    {
+      "config": "with_skill",
+      "trial": 2,
+      "task": "suspended-user-fallback",
+      "passed": true,
+      "evidence": "task 5: assignee_id=4 (want 4=Sara), new comment by Priya(id=1)=True"
+    },
+    {
+      "config": "with_skill",
+      "trial": 2,
+      "task": "comment-author-id",
+      "passed": true,
+      "evidence": "comments on task 12: [{'author_id': 2, 'body': 'Investigating now.'}]"
+    },
+    {
+      "config": "with_skill",
+      "trial": 2,
+      "task": "paginated-count",
+      "passed": true,
+      "evidence": "answer text: \"The exact total count of tasks currently in 'todo' status across all projects is **9**.\\n\\nThis breaks down as:\\n- Page 1: 5 tasks (IDs: 2, 3, 4, 6, 8)\\n- Page 2: 4\""
+    },
+    {
+      "config": "with_skill",
+      "trial": 2,
+      "task": "duplicate-project-key",
+      "passed": true,
+      "evidence": "new project 'MOPS' ('Marketing Operations'), key_ok=True, urgent task in it=True"
+    },
+    {
+      "config": "with_skill",
+      "trial": 3,
+      "task": "create-task-project-key",
+      "passed": true,
+      "evidence": "task created: project_id=1 (want 1), priority=high (want high)"
+    },
+    {
+      "config": "with_skill",
+      "trial": 3,
+      "task": "done-requires-assignee",
+      "passed": true,
+      "evidence": "task 4: status=done (want done), assignee_id=4 (want 4=Sara)"
+    },
+    {
+      "config": "with_skill",
+      "trial": 3,
+      "task": "suspended-user-fallback",
+      "passed": true,
+      "evidence": "task 5: assignee_id=4 (want 4=Sara), new comment by Priya(id=1)=True"
+    },
+    {
+      "config": "with_skill",
+      "trial": 3,
+      "task": "comment-author-id",
+      "passed": true,
+      "evidence": "comments on task 12: [{'author_id': 2, 'body': 'Investigating now.'}]"
+    },
+    {
+      "config": "with_skill",
+      "trial": 3,
+      "task": "paginated-count",
+      "passed": true,
+      "evidence": "answer text: \"**Total count: 9 tasks in 'todo' status across all projects**\\n\\nHere's the breakdown by project:\\n- **Project 1 (Mobile App)**: 4 tasks (ids: 2, 3, 4, 13)\\n- **Pro\""
+    },
+    {
+      "config": "with_skill",
+      "trial": 3,
+      "task": "duplicate-project-key",
+      "passed": true,
+      "evidence": "new project 'MKT' ('Marketing Operations'), key_ok=True, urgent task in it=True"
+    },
+    {
+      "config": "without_skill",
+      "trial": 1,
+      "task": "create-task-project-key",
+      "passed": true,
+      "evidence": "task created: project_id=1 (want 1), priority=high (want high)"
+    },
+    {
+      "config": "without_skill",
+      "trial": 1,
+      "task": "done-requires-assignee",
+      "passed": true,
+      "evidence": "task 4: status=done (want done), assignee_id=4 (want 4=Sara)"
+    },
+    {
+      "config": "without_skill",
+      "trial": 1,
+      "task": "suspended-user-fallback",
+      "passed": true,
+      "evidence": "task 5: assignee_id=4 (want 4=Sara), new comment by Priya(id=1)=True"
+    },
+    {
+      "config": "without_skill",
+      "trial": 1,
+      "task": "comment-author-id",
+      "passed": true,
+      "evidence": "comments on task 12: [{'author_id': 2, 'body': 'Investigating now.'}]"
+    },
+    {
+      "config": "without_skill",
+      "trial": 1,
+      "task": "paginated-count",
+      "passed": true,
+      "evidence": "answer text: \"Based on the project tracker search, there are **9 tasks** currently in 'todo' status across all projects:\\n\\n1. Add biometric unlock (Project 1)\\n2. Crash on phot\""
+    },
+    {
+      "config": "without_skill",
+      "trial": 1,
+      "task": "duplicate-project-key",
+      "passed": true,
+      "evidence": "new project 'MOPS' ('Marketing Operations'), key_ok=True, urgent task in it=True"
+    },
+    {
+      "config": "without_skill",
+      "trial": 2,
+      "task": "create-task-project-key",
+      "passed": true,
+      "evidence": "task created: project_id=1 (want 1), priority=high (want high)"
+    },
+    {
+      "config": "without_skill",
+      "trial": 2,
+      "task": "done-requires-assignee",
+      "passed": true,
+      "evidence": "task 4: status=done (want done), assignee_id=4 (want 4=Sara)"
+    },
+    {
+      "config": "without_skill",
+      "trial": 2,
+      "task": "suspended-user-fallback",
+      "passed": true,
+      "evidence": "task 5: assignee_id=4 (want 4=Sara), new comment by Priya(id=1)=True"
+    },
+    {
+      "config": "without_skill",
+      "trial": 2,
+      "task": "comment-author-id",
+      "passed": true,
+      "evidence": "comments on task 12: [{'author_id': 2, 'body': 'Investigating now.'}]"
+    },
+    {
+      "config": "without_skill",
+      "trial": 2,
+      "task": "paginated-count",
+      "passed": true,
+      "evidence": "answer text: \"**Total count: 9 tasks in 'todo' status**\\n\\nHere's the breakdown:\\n- **First page (5 results):** Tasks 2, 3, 4, 6, 8\\n- **Second page (4 results):** Tasks 10, 11, \""
+    },
+    {
+      "config": "without_skill",
+      "trial": 2,
+      "task": "duplicate-project-key",
+      "passed": true,
+      "evidence": "new project 'MOPS' ('Marketing Operations'), key_ok=True, urgent task in it=True"
+    },
+    {
+      "config": "without_skill",
+      "trial": 3,
+      "task": "create-task-project-key",
+      "passed": true,
+      "evidence": "task created: project_id=1 (want 1), priority=high (want high)"
+    },
+    {
+      "config": "without_skill",
+      "trial": 3,
+      "task": "done-requires-assignee",
+      "passed": true,
+      "evidence": "task 4: status=done (want done), assignee_id=4 (want 4=Sara)"
+    },
+    {
+      "config": "without_skill",
+      "trial": 3,
+      "task": "suspended-user-fallback",
+      "passed": true,
+      "evidence": "task 5: assignee_id=4 (want 4=Sara), new comment by Priya(id=1)=True"
+    },
+    {
+      "config": "without_skill",
+      "trial": 3,
+      "task": "comment-author-id",
+      "passed": true,
+      "evidence": "comments on task 12: [{'author_id': 2, 'body': 'Investigating now.'}]"
+    },
+    {
+      "config": "without_skill",
+      "trial": 3,
+      "task": "paginated-count",
+      "passed": true,
+      "evidence": "answer text: \"**Total: 9 tasks in 'todo' status**\\n\\nHere's the breakdown by project:\\n- **Mobile App (MOB)**: 4 tasks\\n- **Data Platform (DATA)**: 2 tasks  \\n- **Website Redesign\""
+    },
+    {
+      "config": "without_skill",
+      "trial": 3,
+      "task": "duplicate-project-key",
+      "passed": true,
+      "evidence": "new project 'MOPS' ('Marketing Operations'), key_ok=True, urgent task in it=True"
+    }
+  ],
+  "summary": {
+    "with_skill": {
+      "pass_rate": 1.0,
+      "passed": 18,
+      "total": 18,
+      "per_task": {
+        "create-task-project-key": {
+          "passed": 3,
+          "trials": 3
+        },
+        "done-requires-assignee": {
+          "passed": 3,
+          "trials": 3
+        },
+        "suspended-user-fallback": {
+          "passed": 3,
+          "trials": 3
+        },
+        "comment-author-id": {
+          "passed": 3,
+          "trials": 3
+        },
+        "paginated-count": {
+          "passed": 3,
+          "trials": 3
+        },
+        "duplicate-project-key": {
+          "passed": 3,
+          "trials": 3
+        }
+      }
+    },
+    "without_skill": {
+      "pass_rate": 1.0,
+      "passed": 18,
+      "total": 18,
+      "per_task": {
+        "create-task-project-key": {
+          "passed": 3,
+          "trials": 3
+        },
+        "done-requires-assignee": {
+          "passed": 3,
+          "trials": 3
+        },
+        "suspended-user-fallback": {
+          "passed": 3,
+          "trials": 3
+        },
+        "comment-author-id": {
+          "passed": 3,
+          "trials": 3
+        },
+        "paginated-count": {
+          "passed": 3,
+          "trials": 3
+        },
+        "duplicate-project-key": {
+          "passed": 3,
+          "trials": 3
+        }
+      }
+    }
+  }
+}

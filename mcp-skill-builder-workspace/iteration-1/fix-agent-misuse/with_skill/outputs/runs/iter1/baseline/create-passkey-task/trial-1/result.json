@@ -1,0 +1,92 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 22.7,
+  "num_turns": 4,
+  "duration_ms": 21510,
+  "total_cost_usd": 0.05042,
+  "usage": {
+    "input_tokens": 36,
+    "cache_creation_input_tokens": 8676,
+    "cache_read_input_tokens": 100972,
+    "output_tokens": 770,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 8676,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 70,
+        "cache_read_input_tokens": 27620,
+        "cache_creation_input_tokens": 417,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 417
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "is_error": false,
+  "tool_calls": [
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__create_task,mcp__tracker__list_projects",
+        "max_results": 2
+      }
+    },
+    {
+      "name": "Agent",
+      "input": {
+        "description": "List tracker projects and find Mobile App key",
+        "prompt": "List all projects in the tracker to find the project key for the \"Mobile App\" project. Use the mcp__tracker__list_projects tool and report back the project key for Mobile App."
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__list_projects",
+        "max_results": 1
+      }
+    },
+    {
+      "name": "mcp__tracker__list_projects",
+      "input": {}
+    },
+    {
+      "name": "Agent",
+      "input": {
+        "description": "Create high-priority task in Mobile App",
+        "prompt": "Create a new task in the Mobile App project (project_key: \"MOB\") with the following details:\n- Title: \"Support passkey sign-in\"\n- Description: \"Implement WebAuthn passkeys as an alternative to passwords.\"\n- Priority: \"high\"\n\nUse the mcp__tracker__create_task tool and confirm the task was created successfully."
+      }
+    },
+    {
+      "name": "ToolSearch",
+      "input": {
+        "query": "select:mcp__tracker__create_task",
+        "max_results": 1
+      }
+    },
+    {
+      "name": "mcp__tracker__create_task",
+      "input": {
+        "project_key": "MOB",
+        "title": "Support passkey sign-in",
+        "description": "Implement WebAuthn passkeys as an alternative to passwords.",
+        "priority": "high"
+      }
+    }
+  ],
+  "final_text": "Done! I've created task **#31** in the Mobile App project with high priority. The task \"Support passkey sign-in\" is now in the tracker and ready for development.",
+  "stderr_tail": ""
+}

@@ -1,0 +1,14 @@
+{
+  "eval_id": 0,
+  "eval_name": "build-tracker-skill",
+  "prompt": "We use an internal MCP server for our project tracker. It runs with this command: /Users/anandkumarsingh/skill-builder/.venv/bin/python /Users/anandkumarsingh/skill-builder/mcp-skill-builder-workspace/fixtures/copies/<run>/project-tracker/server.py. Build me a skill for it so agents running on cheap small models like Haiku can do triage work reliably — finding tasks, updating statuses, assigning people, that kind of thing. Test agents must NOT touch the real tracker, so mock it out with a fake database, and show me numbers proving the skill actually helps.",
+  "assertions": [
+    "A generated skill directory exists in outputs with a SKILL.md that has valid frontmatter (name and description)",
+    "A runnable mock MCP server exists and passes tool parity against the real server (same 9 tool names, same parameter names, same required params — verified via introspect.py --diff)",
+    "The mock is database-backed: a write tool call against the mock persists into a SQLite database file",
+    "Simulations actually ran: at least 3 distinct simulation tasks with transcripts/run artifacts for BOTH with-skill and without-skill configurations",
+    "A report states numeric pass rates for both configurations (with-skill and baseline)",
+    "The generated skill documents at least 2 of the server's planted quirks: create_task takes a project KEY not id; 'done' requires an assignee (ERR_409); suspended users can't be assigned (ERR_403); search matches titles only / 5-per-page pagination",
+    "The 'real' tracker database was not modified: fixture copy's table contents still match the original seed"
+  ]
+}

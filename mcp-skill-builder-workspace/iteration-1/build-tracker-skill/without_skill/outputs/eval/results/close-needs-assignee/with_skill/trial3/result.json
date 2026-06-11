@@ -1,0 +1,72 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 17562,
+  "duration_api_ms": 18686,
+  "ttft_ms": 2277,
+  "ttft_stream_ms": 1434,
+  "time_to_request_ms": 9,
+  "num_turns": 8,
+  "result": "Done! I've successfully updated the project tracker:\n\n\u2705 **Task:** 'Add biometric unlock' (ID 2)  \n\u2705 **Assigned to:** Sara Ito  \n\u2705 **Status:** Marked as done\n\nThe task has been recorded in the tracker with Sara Ito as the assignee and its status updated from \"todo\" to \"done\".",
+  "stop_reason": "end_turn",
+  "session_id": "0d1fd29d-a2bd-4ef1-87da-d40305f269fe",
+  "total_cost_usd": 0.0426051,
+  "usage": {
+    "input_tokens": 46,
+    "cache_creation_input_tokens": 11029,
+    "cache_read_input_tokens": 124021,
+    "output_tokens": 1494,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 11029,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 10,
+        "output_tokens": 239,
+        "cache_read_input_tokens": 28154,
+        "cache_creation_input_tokens": 556,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 556
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 595,
+      "outputTokens": 1510,
+      "cacheReadInputTokens": 124021,
+      "cacheCreationInputTokens": 11029,
+      "webSearchRequests": 0,
+      "costUSD": 0.0426051,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_016LtrsgSM2nxGKgTrM9ZWHB",
+      "tool_input": {
+        "command": "cat > /tmp/tracker_ops.sh << 'EOF'\n#!/bin/bash\n\n# This will be executed via the MCP tools\necho \"Searching for 'Add biometric unlock' task...\"\necho \"Getting all users...\"\nEOF\n",
+        "description": "Set up tracker operations"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "664d57b0-3736-41ee-aacd-6ae12754e6ec",
+  "_returncode": 0
+}

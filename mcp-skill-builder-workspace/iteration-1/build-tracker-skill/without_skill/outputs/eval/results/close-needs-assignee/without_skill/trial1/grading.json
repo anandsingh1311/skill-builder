@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 2 status is done",
+      "passed": true,
+      "evidence": "row=('done', 'high', 4)"
+    },
+    {
+      "text": "task 2 assigned to Sara Ito (user 4)",
+      "passed": true,
+      "evidence": "row=('done', 'high', 4)"
+    }
+  ]
+}

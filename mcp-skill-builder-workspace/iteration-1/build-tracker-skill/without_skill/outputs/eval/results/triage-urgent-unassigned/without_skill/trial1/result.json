@@ -1,0 +1,63 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 32428,
+  "duration_api_ms": 33557,
+  "ttft_ms": 4714,
+  "ttft_stream_ms": 1661,
+  "time_to_request_ms": 9,
+  "num_turns": 13,
+  "result": "Triage complete. Found 2 urgent unassigned tasks and assigned both to Priya Raman with status set to in_progress.\n\nIDS: 15,16",
+  "stop_reason": "end_turn",
+  "session_id": "dbe1e084-66ae-4cfd-af64-ac5f8d1cf8e5",
+  "total_cost_usd": 0.0571686,
+  "usage": {
+    "input_tokens": 80,
+    "cache_creation_input_tokens": 11196,
+    "cache_read_input_tokens": 228156,
+    "output_tokens": 2257,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 11196,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 152,
+        "cache_read_input_tokens": 28059,
+        "cache_creation_input_tokens": 818,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 818
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 581,
+      "outputTokens": 2276,
+      "cacheReadInputTokens": 228156,
+      "cacheCreationInputTokens": 11196,
+      "webSearchRequests": 0,
+      "costUSD": 0.0571686,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dfb8d6d6-94d4-4c9c-91a4-a88cceb1ab63",
+  "_returncode": 0
+}

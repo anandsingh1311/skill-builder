@@ -1,0 +1,72 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 33736,
+  "duration_api_ms": 34962,
+  "ttft_ms": 3639,
+  "ttft_stream_ms": 2224,
+  "time_to_request_ms": 8,
+  "num_turns": 6,
+  "result": "Done! I've created a high priority task in the Data Platform project:\n- **Task ID:** 17\n- **Title:** Backfill missing event timestamps\n- **Description:** Events from May 28-30 are missing timestamps.\n- **Priority:** High\n- **Status:** To do",
+  "stop_reason": "end_turn",
+  "session_id": "6f7882d4-ee92-4b70-aeae-86831cc4ba0f",
+  "total_cost_usd": 0.05436655000000001,
+  "usage": {
+    "input_tokens": 52,
+    "cache_creation_input_tokens": 8262,
+    "cache_read_input_tokens": 142787,
+    "output_tokens": 1076,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 8262,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 109,
+        "cache_read_input_tokens": 25588,
+        "cache_creation_input_tokens": 355,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 355
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 549,
+      "outputTokens": 1730,
+      "cacheReadInputTokens": 212048,
+      "cacheCreationInputTokens": 14213,
+      "webSearchRequests": 0,
+      "costUSD": 0.05436655000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01DCM5ZpWUMBwSfTVXGwUMEA",
+      "tool_input": {
+        "command": "cat > /tmp/create_task.json << 'EOF'\n{\n  \"project_key\": \"DATA\",\n  \"title\": \"Backfill missing event timestamps\",\n  \"description\": \"Events from May 28-30 are missing timestamps.\",\n  \"priority\": \"high\"\n}\nEOF\ncat /tmp/create_task.json\n",
+        "description": "Prepare task data"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "feaf3ce8-ecef-4a20-918b-6e5268cdd0c5",
+  "_returncode": 0
+}

@@ -1,0 +1,85 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 33474,
+  "duration_api_ms": 34520,
+  "ttft_ms": 1909,
+  "ttft_stream_ms": 1239,
+  "time_to_request_ms": 10,
+  "num_turns": 12,
+  "result": "Done! The task \"Cookie banner shows twice\" has been assigned to **Marcus Webb** (ID 2). \n\nDevon Cole could not be assigned because he is suspended/inactive in the system (`active: 0`), so I used the fallback and assigned it to Marcus Webb instead, as instructed.",
+  "stop_reason": "end_turn",
+  "session_id": "a6aad715-6e98-4f7a-a10d-cf6e48d0caf1",
+  "total_cost_usd": 0.06145400000000001,
+  "usage": {
+    "input_tokens": 94,
+    "cache_creation_input_tokens": 11379,
+    "cache_read_input_tokens": 289890,
+    "output_tokens": 1796,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 11379,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 8,
+        "output_tokens": 206,
+        "cache_read_input_tokens": 28661,
+        "cache_creation_input_tokens": 399,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 399
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 647,
+      "outputTokens": 1812,
+      "cacheReadInputTokens": 289890,
+      "cacheCreationInputTokens": 11379,
+      "webSearchRequests": 0,
+      "costUSD": 0.06145400000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01BmBWKLWQHew9Z8dDBCCY2K",
+      "tool_input": {
+        "command": "mcp-cli call tracker search_tasks --query_text \"Cookie banner shows twice\" 2>/dev/null || echo \"Testing tool invocation...\""
+      }
+    },
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_0131CYYWCSg97hqqCvtSmXxX",
+      "tool_input": {
+        "command": "mcp-cli call tracker search_tasks --query_text \"Cookie banner\""
+      }
+    },
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01RrRHFVPNgbWiiwy5cEidcu",
+      "tool_input": {
+        "command": "python3 -c \"import json; print('ready')\""
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6a3af081-75a2-44b6-8d5a-622e1dfd465f",
+  "_returncode": 0
+}

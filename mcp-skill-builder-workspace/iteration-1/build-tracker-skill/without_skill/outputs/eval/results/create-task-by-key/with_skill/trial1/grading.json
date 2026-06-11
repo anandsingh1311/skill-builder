@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task 'Backfill missing event timestamps' exists in Data Platform (project 2) with priority high",
+      "passed": true,
+      "evidence": "matching rows=[(2, 'high', 'todo')]"
+    }
+  ]
+}

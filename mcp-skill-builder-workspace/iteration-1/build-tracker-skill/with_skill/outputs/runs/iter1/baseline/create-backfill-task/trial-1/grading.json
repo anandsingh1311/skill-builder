@@ -1,0 +1,17 @@
+{
+  "task": "create-backfill-task",
+  "trial": 1,
+  "passed": true,
+  "expectations": [
+    {
+      "text": "task created in Data Platform with right title and priority",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    },
+    {
+      "text": "no duplicate created",
+      "passed": true,
+      "evidence": "sql returned [[1]]"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "total_tokens": 81832,
+  "duration_ms": 1358165,
+  "total_duration_seconds": 1358.2,
+  "note": "sum of original run (54779 tok / 362.3s, killed by usage limit after building artifacts) and continuation run that redid sims + report (27053 tok / 995.8s)"
+}
